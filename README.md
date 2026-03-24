@@ -5,8 +5,8 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 ## Quick Start
 
 ```bash
-git clone https://github.com/nicopujia/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/nicopujia/dotfiles.git
+cd dotfiles
 ./install.sh
 ```
 
@@ -25,8 +25,9 @@ cd ~/dotfiles
 Create `~/.env` for private keys (not tracked):
 
 ```bash
-export LINEAR_API_KEY="..."
-export CLAUDE_CODE_OAUTH_TOKEN="..."
+# Add your API keys here
+export API_KEY="your-key-here"
+export OAUTH_TOKEN="your-token-here"
 ```
 
 The shell config automatically sources `~/.env` if it exists.
