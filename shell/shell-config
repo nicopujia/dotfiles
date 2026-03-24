@@ -24,6 +24,7 @@ alias oc="EDITOR=nvim opencode"
 alias cc="claude"
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
+alias claudio="claude --dangerously-skip-permissions"
 
 # bun completions
 [ -s "/Users/nicopujia/.bun/_bun" ] && source "/Users/nicopujia/.bun/_bun"
