@@ -31,3 +31,22 @@ export OAUTH_TOKEN="your-token-here"
 ```
 
 The shell config automatically sources `~/.env` if it exists.
+
+## Workflow
+
+**Files are symlinked** - edit in the repo, changes apply immediately:
+```bash
+nvim ~/dotfiles/shell/shell-config  # Edit here
+# ~/.zshrc updates automatically (it's a symlink)
+```
+
+**Sync to another machine:**
+```bash
+cd ~/dotfiles && git pull
+```
+
+**If you edited the live file directly** (e.g., `~/.zshrc`), copy changes back:
+```bash
+cp ~/.zshrc ~/dotfiles/shell/shell-config
+cd ~/dotfiles && git diff && git commit -am "Update config"
+```
