@@ -1,0 +1,135 @@
+[user]
+	name = Nicolás Pujia
+	email = nicopujia.dev@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[alias]
+    # Config
+	cfg = config --global
+
+	# Status
+	st = status -s
+	sts = status
+
+	# Switch
+	s = switch
+	sc = switch -c
+	sd = switch --detach
+	cd = switch
+	switch-grep = !sh -c 'git switch $(git branch --format \"%(refname:short)\" | grep $1)' -
+	sg = !sh -c 'git switch $(git branch --format \"%(refname:short)\" | grep $1)' -
+
+	# Branch
+	b = branch
+	bd = branch -d
+	bD = branch -D
+
+	# Commit
+	c = commit
+	cm = commit -m
+	ca = commit --amend
+	can = commit --amend --no-edit
+
+    # Push
+	p = push
+	pf = push --force
+
+	# Pull
+	pl = pull
+	plr = pull --rebase
+
+	# Merge
+	m = merge
+	ma = merge --abort
+
+	# Rebase
+	rb = rebase
+	rbi = rebase --interactive
+	rbc = rebase --continue
+	rbs = rebase --skip
+	rba = rebase --abort
+	rbq = rebase --quit
+
+	# Stash
+	sh = stash
+	shm = stash -m
+	shp = stash pop
+	shl = stash list
+	shd = stash drop
+	sha = stash apply
+	shs = stash show
+	shc = stash clear
+	shu = stash --include-untracked
+	shum = stash --include-untracked --message
+
+	# Log
+    l = log --oneline
+	lg = log --oneline --graph --all --decorate
+	l1 = l -1
+	l2 = l -2
+	l3 = l -3
+	l4 = l -4
+	l5 = l -5
+	l10 = l -10
+
+	# Add
+	a = add
+	aa = add --all
+
+	# Reset
+	rt = reset
+	rth = reset --hard
+	rts = reset --soft
+	rt1 = reset HEAD~1
+	rts1 = reset --soft HEAD~1
+	undo = rts1
+	rth1 = reset --hard HEAD~1
+
+	# Misc
+	f = fetch
+	d = diff
+	t = tag
+	r = restore
+	chp = cherry-pick
+	rv = revert
+	wt = worktree
+
+    # Combinations
+	cmp = !sh -c 'git cm \"$1\" && git p' -
+	fix = !git can && git pf
+
+	ac = !git aa && git c
+	acm = !git aa && git cm
+	acmp = !sh -c 'git aa && git cm \"$1\" && git p' -
+	acmpprcf = !git aa && git cmpprcf
+	aca = !git aa && git ca
+	acan = !git aa && git can
+	afix = !git aa && git fix
+
+	cmpprcf = !sh -c 'git cmp \"$1\" && gh prcf' -
+	sccmpprcf = !sh -c 'git sc \"$1\" && git cmp \"$2\" && gh prcf' -
+	asccmpprcf = !git aa && git sccmpprcf
+	branch-commit-push-pr = sccmpprcf
+	a-branch-commit-push-pr = asccmpprcf
+	bcppr = branch-commit-push-pr
+	abcppr = a-branch-commit-push-pr
+
+	clear-branches = "!git fetch -p && for branch in $(git branch --format \"%(refname:short)\" | grep -v \"^main$\"); do gone=$(git for-each-ref --format \"%(upstream:track)\" \"refs/heads/$branch\"); if [ \"$gone\" = \"[gone]\" ]; then git branch -D \"$branch\"; elif mergeBase=$(git merge-base main \"$branch\" 2>/dev/null) && squash=$(git commit-tree \"${branch}^{tree}\" -p \"$mergeBase\" -m _ 2>/dev/null) && git cherry main \"$squash\" 2>/dev/null | grep -q \"^-\"; then git branch -D \"$branch\"; fi; done"
+	cb = clear-branches
+
+	clear-changes = !sh -c 'git restore \"$1\" && git clean -fd \"$1\"' -
+	cc = clear-changes
+	co = checkout
+[core]
+	editor = vim
+[color]
+	ui = auto
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
