@@ -33,6 +33,5 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
     export TERM=xterm-256color
 fi
 
-# API KEYS / OAUTH TOKENS - load from ~/.env or use a secrets manager
-# export LINEAR_API_KEY=""
-# export CLAUDE_CODE_OAUTH_TOKEN=""
+# API KEYS / OAUTH TOKENS - load from ~/.env (not tracked in git)
+[ -f ~/.env ] && source ~/.env
