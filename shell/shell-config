@@ -21,6 +21,7 @@ alias rc="reload-config"
 alias g="git"
 alias dk="docker"
 alias oc="EDITOR=nvim opencode"
+alias omo='EDITOR=nvim OPENCODE_CONFIG_CONTENT='\''{"plugin": ["oh-my-opencode"]}'\'' opencode'
 alias cc="claude"
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
