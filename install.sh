@@ -22,17 +22,15 @@ if [ "$FORCE" = true ]; then
 fi
 
 cd "$DOTFILES_DIR"
-$STOW_CMD -t ~ git
-$STOW_CMD -t ~ nvim
-$STOW_CMD -t ~ .config
+$STOW_CMD -t ~ home
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Detected macOS, linking shell-config to ~/.zshrc"
-    ln -sf "$DOTFILES_DIR/shell/shell-config" ~/.zshrc
+    echo "Detected macOS, linking shell-config.sh to ~/.zshrc"
+    ln -sf "$DOTFILES_DIR/shell-config.sh" ~/.zshrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "Detected Linux, linking shell-config to ~/.bash_aliases"
-    ln -sf "$DOTFILES_DIR/shell/shell-config" ~/.bash_aliases
+    echo "Detected Linux, linking shell-config.sh to ~/.bash_aliases"
+    ln -sf "$DOTFILES_DIR/shell-config.sh" ~/.bash_aliases
 else
     echo "Unknown OS: $OSTYPE"
     exit 1
