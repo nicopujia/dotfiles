@@ -21,11 +21,10 @@ if [ "$FORCE" = true ]; then
     STOW_CMD="stow --adopt"
 fi
 
-# Stow packages that don't need special handling
 cd "$DOTFILES_DIR"
 $STOW_CMD -t ~ git
 $STOW_CMD -t ~ nvim
-$STOW_CMD -t ~ opencode
+$STOW_CMD -t ~ .config
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
