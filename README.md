@@ -10,6 +10,12 @@ cd dotfiles
 ./install.sh
 ```
 
+Use `--force` to override existing files:
+
+```bash
+./install.sh --force
+```
+
 ## Structure
 
 ```
