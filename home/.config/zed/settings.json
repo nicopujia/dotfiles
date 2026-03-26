@@ -1,0 +1,136 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "$schema": "zed://schemas/settings",
+  "status_bar": {
+    // "experimental.show": false,
+  },
+  // "show_completions_on_input": false,
+  "minimap": {
+    "show": "never",
+  },
+  "git_panel": {
+    "tree_view": false,
+  },
+  "ssh_connections": [
+    {
+      "host": "66.179.138.29",
+      "username": "nico",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/"],
+        },
+        {
+          "paths": ["/home/nico"],
+        },
+        {
+          "paths": ["/home/nico/justralph.it"],
+        },
+      ],
+      "nickname": "pujia",
+    },
+  ],
+  "vim_mode": true,
+  "show_edit_predictions": false,
+  "linked_edits": false,
+  "base_keymap": "VSCode",
+  "relative_line_numbers": "enabled",
+  "completions": {
+    "words_min_length": 0,
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+  },
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "theme": {
+    "mode": "system",
+    "dark": "Monokai Night",
+    "light": "One Light",
+  },
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5",
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "agent_servers": {
+    "opencode": {
+      "type": "extension",
+      "favorite_models": [
+        "anthropic/claude-haiku-4-5",
+        "anthropic/claude-sonnet-4-5",
+        "anthropic/claude-opus-4-6",
+      ],
+      "default_config_options": {},
+      "favorite_config_option_values": {},
+    },
+  },
+  "file_types": {
+    "svg": ["html"],
+  },
+  "languages": {
+    "XML": {
+      "formatter": "language_server",
+    },
+    "HTML": {
+      "tab_size": 2,
+    },
+    "CSS": {
+      "tab_size": 2,
+    },
+    "JavaScript": {
+      "tab_size": 2,
+    },
+    "TypeScript": {
+      "tab_size": 2,
+    },
+    "Python": {
+      "language_servers": ["ty", "ruff"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "bash",
+          "arguments": [
+            "-c",
+            "ruff check --exit-zero --fix --stdin-filename {buffer_path} | ruff format --stdin-filename {buffer_path}",
+          ],
+        },
+      },
+    },
+  },
+  "lsp": {
+    "ty": {
+      "binary": {
+        "path": "ty",
+        "arguments": ["server"],
+      },
+    },
+  },
+  "context_servers": {
+    "mcp-server-linear": {
+      "enabled": true,
+      "remote": false,
+      "settings": {},
+    },
+    "posthog": {
+      "settings": {},
+      "enabled": true,
+      "url": "https://mcp.posthog.com/mcp",
+      "headers": {
+        "Authorization": "Bearer phx_6Y0DlufbMVb01JjVzme7e2kjPKfYwDs6YuWCWK1jgZuQtwn",
+      },
+    },
+  },
+}
