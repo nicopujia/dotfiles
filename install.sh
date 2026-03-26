@@ -3,26 +3,10 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-FORCE=false
-for arg in "$@"; do
-    case $arg in
-        --force)
-            FORCE=true
-            shift
-            ;;
-    esac
-done
-
 echo "Setting up dotfiles from $DOTFILES_DIR..."
 
-STOW_CMD="stow"
-if [ "$FORCE" = true ]; then
-    echo "Force mode enabled - will override existing files"
-    STOW_CMD="stow --adopt"
-fi
-
 cd "$DOTFILES_DIR"
-$STOW_CMD -t ~ home
+stow -t ~ home
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
