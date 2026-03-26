@@ -10,20 +10,21 @@ cd dotfiles
 ./install.sh
 ```
 
-Use `--force` to override existing files:
-
-```bash
-./install.sh --force
-```
-
 ## Structure
 
 ```
 .
-├── git/           → ~/.gitconfig
-├── nvim/          → ~/.config/nvim/
-├── shell/         → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
-└── install.sh     # Sets everything up
+├── home/                    # Stow package → symlinks to ~
+│   ├── .config/
+│   │   ├── gh/             → ~/.config/gh/         (GitHub CLI)
+│   │   ├── nvim/           → ~/.config/nvim/       (Neovim)
+│   │   ├── opencode/       → ~/.config/opencode/   (OpenCode)
+│   │   └── zed/            → ~/.config/zed/        (Zed editor)
+│   ├── .gitconfig          → ~/.gitconfig
+│   └── .ssh/
+│       └── config          → ~/.ssh/config
+├── install.sh              # Sets everything up
+└── shell-config.sh         → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
 ```
 
 ## Secrets
@@ -41,18 +42,21 @@ The shell config automatically sources `~/.env` if it exists.
 ## Workflow
 
 **Files are symlinked** - edit in the repo, changes apply immediately:
+
 ```bash
-nvim ~/dotfiles/shell/shell-config  # Edit here
-# ~/.zshrc updates automatically (it's a symlink)
+nvim ~/dotfiles/shell-config.sh           # Edit shell config
+nvim ~/dotfiles/home/.config/nvim/init.lua  # Edit nvim config
 ```
 
 **Sync to another machine:**
+
 ```bash
 cd ~/dotfiles && git pull
 ```
 
 **If you edited the live file directly** (e.g., `~/.zshrc`), copy changes back:
+
 ```bash
-cp ~/.zshrc ~/dotfiles/shell/shell-config
-cd ~/dotfiles && git diff && git commit -am "Update config"
+cp ~/.zshrc ~/dotfiles/shell-config.sh
+cd ~/dotfiles && git diff && git commit -am "Update shell config"
 ```
