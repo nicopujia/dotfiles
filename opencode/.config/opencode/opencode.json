@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "oh-my-opencode@latest"
+  ],
+  "lsp": {
+    "ty": {
+      "command": [
+        "ty",
+        "server"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
+    },
+    "pyright": {
+      "disabled": true
+    }
+  },
+  "formatter": {
+    "ruff": {
+      "command": [
+        "bash",
+        "-c",
+        "ruff check --exit-zero --fix --stdin-filename $FILE | ruff format --stdin-filename $FILE"
+      ]
+    }
+  }
+}

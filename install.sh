@@ -9,6 +9,7 @@ echo "Setting up dotfiles from $DOTFILES_DIR..."
 cd "$DOTFILES_DIR"
 stow -t ~ git
 stow -t ~ nvim
+stow -t ~ opencode
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
