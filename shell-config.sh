@@ -1,34 +1,36 @@
+# Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
+if [ -h ~/.zshrc ]; then
+    export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.zshrc)")" && pwd)"
+elif [ -h ~/.bash_aliases ]; then
+    export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.bash_aliases)")" && pwd)"
+fi
+
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export BUN_INSTALL="$HOME/.bun"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export BUN_INSTALL="$HOME/.bun"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 alias q="exit"
 alias ":q"="exit"
-alias nvimcfg="nvim ~/.config/nvim/init.lua"
 alias c="clear"
 alias vps="ssh -X nico@pujia"
 alias fvps="mosh -p 60001 --server=/home/linuxbrew/.linuxbrew/bin/mosh-server nico@66.179.138.29"
-alias config="nvim ~/.zshrc"
+alias config="nvim $DOTFILES_DIR/shell-config.sh"
 alias cfg="config"
-alias reload-config="source ~/.zshrc"
-alias rc="reload-config"
+alias reload="source $DOTFILES_DIR/shell-config.sh"
+alias nvimrc="nvim $DOTFILES_DIR/home/.config/nvim/init.lua"
 alias g="git"
 alias dk="docker"
 alias oc="EDITOR=nvim opencode"
-alias omo="EDITOR=nvim opencode"
-alias cc="claude"
+alias claudio="claude --dangerously-skip-permissions"
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
-alias claudio="claude --dangerously-skip-permissions"
+alias bat="batcat"
 
 # bun completions
-[ -s "/Users/nicopujia/.bun/_bun" ] && source "/Users/nicopujia/.bun/_bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # ghostty <> tmux patch
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
@@ -37,3 +39,9 @@ fi
 
 # API KEYS / OAUTH TOKENS - load from ~/.env (not tracked in git)
 [ -f ~/.env ] && source ~/.env
+
+# load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# load nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
