@@ -22,6 +22,7 @@ cd dotfiles
 │   │   ├── shared/         → ~/.config/shared/     (shared tool scripts)
 │   │   └── zed/            → ~/.config/zed/        (Zed editor)
 │   ├── .gitconfig          → ~/.gitconfig
+│   ├── .tmux.conf          → ~/.tmux.conf
 │   └── .ssh/
 │       └── config          → ~/.ssh/config
 ├── install.sh              # Sets everything up
