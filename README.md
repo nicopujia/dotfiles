@@ -19,6 +19,7 @@ cd dotfiles
 │   │   ├── gh/             → ~/.config/gh/         (GitHub CLI)
 │   │   ├── nvim/           → ~/.config/nvim/       (Neovim)
 │   │   ├── opencode/       → ~/.config/opencode/   (OpenCode)
+│   │   ├── shared/         → ~/.config/shared/     (shared tool scripts)
 │   │   └── zed/            → ~/.config/zed/        (Zed editor)
 │   ├── .gitconfig          → ~/.gitconfig
 │   └── .ssh/
@@ -53,6 +54,11 @@ nvim ~/dotfiles/home/.config/nvim/init.lua  # Edit nvim config
 ```bash
 cd ~/dotfiles && git pull
 ```
+
+Python tooling for Zed and OpenCode is centralized in `home/.config/shared/`:
+
+- `home/.config/shared/python-format.sh` keeps formatting behavior aligned
+- `home/.config/shared/python-lsp.sh` keeps the Python LSP launcher aligned
 
 **If you edited the live file directly** (e.g., `~/.zshrc`), copy changes back:
 

@@ -103,8 +103,8 @@
         "external": {
           "command": "bash",
           "arguments": [
-            "-c",
-            "ruff check --exit-zero --fix --stdin-filename {buffer_path} | ruff format --stdin-filename {buffer_path}",
+            "-lc",
+            "$HOME/.config/shared/python-format.sh \"{buffer_path}\"",
           ],
         },
       },
@@ -113,8 +113,11 @@
   "lsp": {
     "ty": {
       "binary": {
-        "path": "ty",
-        "arguments": ["server"],
+        "path": "bash",
+        "arguments": [
+          "-lc",
+          "$HOME/.config/shared/python-lsp.sh",
+        ],
       },
     },
   },

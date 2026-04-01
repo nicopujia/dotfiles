@@ -3,7 +3,7 @@
   // "plugin": ["oh-my-openagent@latest"],
   "lsp": {
     "ty": {
-      "command": ["ty", "server"],
+      "command": ["bash", "-lc", "$HOME/.config/shared/python-lsp.sh"],
       "extensions": [".py", ".pyi"],
     },
     "pyright": {
@@ -14,8 +14,8 @@
     "ruff": {
       "command": [
         "bash",
-        "-c",
-        "ruff check --exit-zero --fix --stdin-filename $FILE | ruff format --stdin-filename $FILE",
+        "-lc",
+        "$HOME/.config/shared/python-format.sh \"$FILE\"",
       ],
     },
   },

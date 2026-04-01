@@ -19,6 +19,8 @@ done
 
 stow -t ~ home
 
+find "$DOTFILES_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
+
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Detected macOS, linking shell-config.sh to ~/.zshrc"
