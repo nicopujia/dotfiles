@@ -25,5 +25,19 @@
       "command": ["bunx", "@playwright/mcp@latest"],
       "enabled": true,
     },
+    "context7": {
+      "type": "local",
+      "command": [
+        "bash",
+        "-lc",
+        "[ -f \"$HOME/.env\" ] && source \"$HOME/.env\"; exec bunx -y @upstash/context7-mcp@latest",
+      ],
+      "enabled": true,
+    },
+    "grep-mcp": {
+      "type": "local",
+      "command": ["uvx", "grep-mcp"],
+      "enabled": true,
+    },
   },
 }
