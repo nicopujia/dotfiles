@@ -1,6 +1,20 @@
 {
   "$schema": "https://opencode.ai/config.json",
   // "plugin": ["oh-my-openagent@latest"],
+  "command": {
+    "commit": {
+      "description": "Commit and push frequently",
+      "template": "Once you're sure it works, frequently make atomic commits and push.",
+    },
+    "god": {
+      "description": "Indicate that root access is available",
+      "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would.",
+    },
+    "onboard": {
+      "description": "Onboard into repo using subagents.",
+      "template": "Onboard yourself in the current repo investigating it using 10 parallel subagents.",
+    },
+  },
   "lsp": {
     "ty": {
       "command": ["bash", "-lc", "$HOME/.config/shared/python-lsp.sh"],
