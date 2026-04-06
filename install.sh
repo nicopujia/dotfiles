@@ -7,8 +7,18 @@ echo "Setting up dotfiles from $DOTFILES_DIR..."
 
 cd "$DOTFILES_DIR"
 
-# Remove existing files to avoid conflicts
-echo "Removing existing files..."
+# Remove existing symlinks/files to avoid conflicts
+# Process directories bottom-up so directory symlinks are removed
+# before we try to remove their contents (avoids deleting repo files
+# through directory-level symlinks created by a previous stow run)
+echo "Removing existing symlinks..."
+find home -mindepth 1 -type d | sort -r | while read -r dir; do
+    target="$HOME/${dir#home/}"
+    if [[ -L "$target" ]]; then
+        rm -f "$target"
+        echo "  Removed dir symlink $target"
+    fi
+done
 find home -type f | while read -r file; do
     target="$HOME/${file#home/}"
     if [[ -e "$target" || -L "$target" ]]; then
