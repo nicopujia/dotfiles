@@ -126,7 +126,7 @@
 	cc = clear-changes
 	co = checkout
 [core]
-	editor = vim
+	editor = nvim
 [color]
 	ui = auto
 [push]
