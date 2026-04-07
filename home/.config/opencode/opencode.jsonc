@@ -9,10 +9,12 @@
     "god": {
       "description": "Indicate the available power and its expectations.",
       "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would. Frequently make atomic commits and push after you ensure things work. Start by onboarding yourself in the current repo investigating it using 10 parallel subagents.",
+      "subtask": true,
     },
     "onboard": {
       "description": "Onboard into repo using subagents.",
       "template": "Onboard yourself in the current repo investigating it using 10 parallel subagents.",
+      "subtask": true,
     },
   },
   "lsp": {
