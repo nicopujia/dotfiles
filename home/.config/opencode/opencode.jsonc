@@ -8,7 +8,7 @@
     },
     "god": {
       "description": "Indicate the available power and its expectations.",
-      "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would. Start by onboarding yourself in the current repo investigating it using 10 parallel subagents. You will then receive several tasks to solve, but don't solve them yourself; be an orchestrator -- ALWAYS spawn subagents for each of those tasks, including all phases (reserach, planning, implementation, and testing), so you keep your own context window lean. Besides, frequently make atomic commits and push after you ensure things work. Ask any clarifying questions before a task.",
+      "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would. Start by onboarding yourself in the current repo investigating it using 10 parallel subagents. You will then receive several tasks to solve, but don't solve them yourself; be an orchestrator -- ALWAYS spawn a subagent for each of those tasks. Those subagents should also spawn their own subagents for each task phase (reserach, planning, implementation, testing). Besides, frequently make atomic commits and push after you ensure things work. Ask any needed clarifying questions before starting a task.",
     },
     "onboard": {
       "description": "Onboard into repo using subagents.",
