@@ -59,6 +59,7 @@
   "agent": {
     "default_profile": "ask",
     "default_model": {
+      "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5",
     },
@@ -114,26 +115,9 @@
     "ty": {
       "binary": {
         "path": "bash",
-        "arguments": [
-          "-lc",
-          "$HOME/.config/shared/python-lsp.sh",
-        ],
+        "arguments": ["-lc", "$HOME/.config/shared/python-lsp.sh"],
       },
     },
   },
-  "context_servers": {
-    "mcp-server-linear": {
-      "enabled": true,
-      "remote": false,
-      "settings": {},
-    },
-    "posthog": {
-      "settings": {},
-      "enabled": true,
-      "url": "https://mcp.posthog.com/mcp",
-      "headers": {
-        "Authorization": "Bearer phx_6Y0DlufbMVb01JjVzme7e2kjPKfYwDs6YuWCWK1jgZuQtwn",
-      },
-    },
-  },
+  "context_servers": {},
 }
