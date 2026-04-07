@@ -38,6 +38,8 @@
     # Push
 	p = push
 	pf = push --force
+	pn = push --no-verify
+	pfn = push --force --no-verify
 
 	# Pull
 	pl = pull
