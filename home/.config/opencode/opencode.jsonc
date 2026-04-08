@@ -4,7 +4,7 @@
   "command": {
     "commit": {
       "description": "Commit and push frequently",
-      "template": "Once you're sure it works, frequently make atomic commits and push.",
+      "template": "Once you're sure things work, frequently make atomic commits and push.",
     },
     "god": {
       "description": "Indicate the available power and its expectations.",
