@@ -21,6 +21,7 @@ cd dotfiles
 │   │   ├── opencode/       → ~/.config/opencode/   (OpenCode)
 │   │   ├── shared/         → ~/.config/shared/     (shared tool scripts)
 │   │   └── zed/            → ~/.config/zed/        (Zed editor)
+│   ├── .agents/            → ~/.agents/            (agent skills + lockfile)
 │   ├── .gitconfig          → ~/.gitconfig
 │   ├── .tmux.conf          → ~/.tmux.conf
 │   └── .ssh/

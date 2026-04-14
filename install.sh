@@ -12,6 +12,10 @@ cd "$DOTFILES_DIR"
 # before we try to remove their contents (avoids deleting repo files
 # through directory-level symlinks created by a previous stow run)
 echo "Removing existing symlinks..."
+if [[ -d "$HOME/.agents" && ! -L "$HOME/.agents" ]]; then
+    rm -rf "$HOME/.agents"
+    echo "  Removed existing $HOME/.agents directory"
+fi
 find home -mindepth 1 -type d | sort -r | while read -r dir; do
     target="$HOME/${dir#home/}"
     if [[ -L "$target" ]]; then
