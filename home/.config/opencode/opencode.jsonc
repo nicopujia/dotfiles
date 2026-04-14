@@ -35,11 +35,6 @@
     },
   },
   "mcp": {
-    "playwright": {
-      "type": "local",
-      "command": ["bunx", "@playwright/mcp@latest"],
-      "enabled": true,
-    },
     "context7": {
       "type": "local",
       "command": [
