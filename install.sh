@@ -3,6 +3,14 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+require_cmd() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        echo "Missing required command: $1"
+        echo "$2"
+        exit 1
+    fi
+}
+
 echo "Setting up dotfiles from $DOTFILES_DIR..."
 
 cd "$DOTFILES_DIR"
@@ -48,5 +56,17 @@ else
     echo "Unknown OS: $OSTYPE"
     exit 1
 fi
+
+echo "Checking required binaries for skills and MCPs..."
+require_cmd bun "Install Bun from https://bun.sh before running this setup."
+require_cmd uvx "Install uv from https://docs.astral.sh/uv/getting-started/installation/ before running this setup."
+
+if ! command -v agent-browser >/dev/null 2>&1; then
+    echo "Installing agent-browser..."
+    bun install -g agent-browser
+fi
+
+echo "Ensuring agent-browser browser binaries are installed..."
+agent-browser install
 
 echo "Dotfiles setup complete!"

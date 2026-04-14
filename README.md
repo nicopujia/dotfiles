@@ -1,8 +1,8 @@
 # Dotfiles
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/).
-
 ## Quick Start
+
+Prerrequisites: [GNU Stow](https://www.gnu.org/software/stow/), [bun](https://bun.sh), [uv](https://docs.astral.sh/uv/getting-started/installation)
 
 ```bash
 git clone https://github.com/nicopujia/dotfiles.git
