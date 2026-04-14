@@ -37,6 +37,15 @@
       "skillFolderHash": "2a1ad17028306ebe45f0e49703fa28b9b2e7f499",
       "installedAt": "2026-04-14T15:41:08.673Z",
       "updatedAt": "2026-04-14T15:41:08.673Z"
+    },
+    "code-security": {
+      "source": "semgrep/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/semgrep/skills.git",
+      "skillPath": "skills/code-security/SKILL.md",
+      "skillFolderHash": "3b9b4888017bcf2b99601433db8847cf250cb8d5",
+      "installedAt": "2026-04-14T16:49:15.382Z",
+      "updatedAt": "2026-04-14T16:49:15.382Z"
     }
   },
   "dismissed": {
