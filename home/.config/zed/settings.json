@@ -25,17 +25,28 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/"],
+          "paths": [
+            "/"
+          ]
         },
         {
-          "paths": ["/home/nico"],
+          "paths": [
+            "/home/nico"
+          ]
         },
         {
-          "paths": ["/home/nico/justralph.it"],
-        },
+          "paths": [
+            "/home/nico/justralph.it"
+          ]
+        }
       ],
-      "nickname": "pujia",
+      "nickname": "pujia"
     },
+    {
+      "host": "pujia",
+      "args": [],
+      "projects": []
+    }
   ],
   "vim_mode": true,
   "show_edit_predictions": false,
