@@ -49,5 +49,15 @@
       "command": ["uvx", "grep-mcp"],
       "enabled": true,
     },
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "bunx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--no-usage-statistics",
+      ],
+      "enabled": true,
+    },
   },
 }
