@@ -8,6 +8,15 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "$schema": "zed://schemas/settings",
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "project_panel": {
+    "dock": "left",
+  },
   "status_bar": {
     // "experimental.show": false,
   },
@@ -16,6 +25,7 @@
     "show": "never",
   },
   "git_panel": {
+    "dock": "left",
     "tree_view": false,
   },
   "ssh_connections": [
@@ -62,6 +72,8 @@
     "light": "One Light",
   },
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "default_profile": "ask",
     "default_model": {
       "enable_thinking": true,
