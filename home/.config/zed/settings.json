@@ -85,7 +85,9 @@
         "anthropic/claude-sonnet-4-5",
         "anthropic/claude-opus-4-6",
       ],
-      "default_config_options": {},
+      "default_config_options": {
+        "model": "openai/gpt-5.4/medium",
+      },
       "favorite_config_option_values": {},
     },
   },
