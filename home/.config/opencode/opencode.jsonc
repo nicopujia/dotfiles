@@ -16,22 +16,11 @@
       "subtask": true,
     },
   },
+  // Keep Python formatter/LSP hooks out of the global opencode config.
+  // A global plugin handles lightweight post-edit Ruff formatting instead.
   "lsp": {
-    "ty": {
-      "command": ["bash", "-lc", "$HOME/.config/shared/python-lsp.sh"],
-      "extensions": [".py", ".pyi"],
-    },
     "pyright": {
       "disabled": true,
-    },
-  },
-  "formatter": {
-    "ruff": {
-      "command": [
-        "bash",
-        "-lc",
-        "$HOME/.config/shared/python-format.sh \"$FILE\"",
-      ],
     },
   },
   "mcp": {
