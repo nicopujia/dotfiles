@@ -7,16 +7,26 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Monokai Night"
+  },
   "$schema": "zed://schemas/settings",
-  "outline_panel": {
-    "dock": "left",
-  },
-  "collaboration_panel": {
-    "dock": "left",
-  },
-  "project_panel": {
-    "dock": "left",
-  },
+  // "outline_panel": {
+  //   "dock": "left",
+  // },
+  // "collaboration_panel": {
+  //   "dock": "left",
+  // },
+  // "project_panel": {
+  //   "dock": "left",
+  // },
   "status_bar": {
     // "experimental.show": false,
   },
@@ -25,7 +35,7 @@
     "show": "never",
   },
   "git_panel": {
-    "dock": "left",
+    // "dock": "left",
     "tree_view": false,
   },
   "ssh_connections": [
@@ -66,14 +76,9 @@
   "vim": {
     "toggle_relative_line_numbers": true,
   },
-  "theme": {
-    "mode": "system",
-    "dark": "Monokai Night",
-    "light": "One Light",
-  },
   "agent": {
-    "sidebar_side": "right",
-    "dock": "right",
+    // "sidebar_side": "right",
+    // "dock": "right",
     "default_profile": "ask",
     "default_model": {
       "enable_thinking": true,
