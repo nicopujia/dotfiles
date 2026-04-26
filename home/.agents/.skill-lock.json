@@ -55,15 +55,6 @@
       "skillFolderHash": "f97910e9c43c6fe378ca52aa8dba0cbcf28bb420",
       "installedAt": "2026-04-25T19:07:00.021Z",
       "updatedAt": "2026-04-25T19:07:00.021Z"
-    },
-    "agent-device": {
-      "source": "callstackincubator/agent-device",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/callstackincubator/agent-device.git",
-      "skillPath": "skills/agent-device/SKILL.md",
-      "skillFolderHash": "741ba079ea7c3c91486368aaf295e1ea54f7459f",
-      "installedAt": "2026-04-25T19:28:00.670Z",
-      "updatedAt": "2026-04-25T19:28:00.670Z"
     }
   },
   "dismissed": {
