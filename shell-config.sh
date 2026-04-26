@@ -1,7 +1,9 @@
 # Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
 if [ -h ~/.zshrc ]; then
+    bindkey -v
     export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.zshrc)")" && pwd)"
 elif [ -h ~/.bash_aliases ]; then
+    set -o vi
     export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.bash_aliases)")" && pwd)"
 fi
 
