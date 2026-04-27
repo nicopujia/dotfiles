@@ -25,6 +25,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true  
 vim.opt.softtabstop = 4
 vim.opt.clipboard = "unnamedplus" -- Share clipbaord with the OS
+vim.opt.termguicolors = true
 vim.diagnostic.config({
   virtual_text = true,      -- Show errors as virtual text
   signs = true,             -- Show signs in the gutter
@@ -32,6 +33,8 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
+
+local use_light_theme = vim.env.NVIM_THEME == "light"
 
 -- Setup lazy.nvim (plugin manager) --
 require("lazy").setup({
@@ -60,10 +63,23 @@ require("lazy").setup({
       end,
     },
     
+    -- light theme
+    {
+      "EdenEast/nightfox.nvim",
+      priority = 1000,
+      lazy = not use_light_theme,
+      config = function()
+        if use_light_theme then
+          vim.cmd("colorscheme dayfox")
+        end
+      end,
+    },
+
     -- theme (monokai with absolute black background)
     {
       "tanvirtin/monokai.nvim",
       priority = 1000,
+      lazy = use_light_theme,
       config = function()
         require("monokai") 
         vim.cmd("colorscheme monokai")
