@@ -49,6 +49,16 @@ end
 
 local use_light_theme = should_use_light_theme()
 
+local function apply_light_theme_overrides()
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "SignColumn", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "LineNr", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#ffffff" })
+end
+
 -- Setup lazy.nvim (plugin manager) --
 require("lazy").setup({
   spec = {
@@ -84,6 +94,7 @@ require("lazy").setup({
       config = function()
         if use_light_theme then
           vim.cmd("colorscheme dayfox")
+          apply_light_theme_overrides()
         end
       end,
     },
