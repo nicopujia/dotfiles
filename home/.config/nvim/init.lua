@@ -34,7 +34,20 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local use_light_theme = vim.env.NVIM_THEME == "light"
+local function should_use_light_theme()
+  if vim.env.NVIM_THEME == "light" then
+    return true
+  end
+
+  if vim.env.NVIM_THEME == "dark" then
+    return false
+  end
+
+  local system_theme = vim.fn.system({ "defaults", "read", "-g", "AppleInterfaceStyle" })
+  return vim.v.shell_error ~= 0 or not system_theme:match("Dark")
+end
+
+local use_light_theme = should_use_light_theme()
 
 -- Setup lazy.nvim (plugin manager) --
 require("lazy").setup({
