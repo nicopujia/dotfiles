@@ -5,6 +5,7 @@
     "@google/gemini-cli": "latest",
     "agent-browser": "latest",
     "firebase-tools": "latest",
+    "ocx": "^2.0.7",
     "opencode-ai": "latest",
     "opencode-antigravity-auth": "latest",
     "opencode-claude-max-proxy": "latest",
