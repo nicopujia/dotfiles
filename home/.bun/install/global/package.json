@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@anthropic-ai/claude-code": "latest",
+    "@code-yeongyu/comment-checker": "latest",
+    "@google/gemini-cli": "latest",
+    "agent-browser": "latest",
+    "firebase-tools": "latest",
+    "opencode-ai": "latest",
+    "opencode-antigravity-auth": "latest",
+    "opencode-claude-max-proxy": "latest",
+    "portless": "latest",
+    "skills": "latest",
+    "vercel": "latest",
+    "wrangler": "latest"
+  },
+  "trustedDependencies": [
+    "@code-yeongyu/comment-checker"
+  ]
+}

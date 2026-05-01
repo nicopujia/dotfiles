@@ -11,9 +11,63 @@ require_cmd() {
     fi
 }
 
+load_homebrew() {
+    local brew_bin=""
+
+    for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+        if [[ -x "$candidate" ]]; then
+            brew_bin="$candidate"
+            break
+        fi
+    done
+
+    if [[ -n "$brew_bin" ]]; then
+        eval "$("$brew_bin" shellenv)"
+    fi
+}
+
+ensure_homebrew() {
+    load_homebrew
+
+    if command -v brew >/dev/null 2>&1; then
+        return
+    fi
+
+    require_cmd curl "Install curl before running this setup."
+
+    echo "Installing Homebrew..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    load_homebrew
+    require_cmd brew "Homebrew installation completed, but brew is not available on PATH."
+}
+
+install_uv_tools() {
+    if [[ ! -f "$DOTFILES_DIR/uv-tools.txt" ]]; then
+        return
+    fi
+
+    echo "Installing uv tools..."
+    while IFS= read -r tool; do
+        [[ -z "$tool" || "$tool" == \#* ]] && continue
+        uv tool install "$tool"
+    done < "$DOTFILES_DIR/uv-tools.txt"
+}
+
 echo "Setting up dotfiles from $DOTFILES_DIR..."
 
 cd "$DOTFILES_DIR"
+
+ensure_homebrew
+
+echo "Installing Homebrew packages..."
+brew bundle --file "$DOTFILES_DIR/Brewfile"
+
+echo "Checking required setup binaries..."
+require_cmd stow "Install GNU Stow before running this setup."
+require_cmd bun "Install Bun before running this setup."
+require_cmd uvx "Install uv before running this setup."
+require_cmd uv "Install uv before running this setup."
 
 # Remove existing symlinks/files to avoid conflicts
 # Process directories bottom-up so directory symlinks are removed
@@ -57,14 +111,11 @@ else
     exit 1
 fi
 
-echo "Checking required binaries for skills and MCPs..."
-require_cmd bun "Install Bun from https://bun.sh before running this setup."
-require_cmd uvx "Install uv from https://docs.astral.sh/uv/getting-started/installation/ before running this setup."
-require_cmd uv "Install uv from https://docs.astral.sh/uv/getting-started/installation/ before running this setup."
+install_uv_tools
 
-if ! command -v agent-browser >/dev/null 2>&1; then
-    echo "Installing agent-browser..."
-    bun install -g agent-browser
+if [[ -f "$HOME/.bun/install/global/package.json" ]]; then
+    echo "Installing Bun global packages..."
+    bun install --cwd "$HOME/.bun/install/global"
 fi
 
 echo "Ensuring agent-browser browser binaries are installed..."

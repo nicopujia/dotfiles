@@ -2,7 +2,9 @@
 
 ## Quick Start
 
-Prerrequisites: [GNU Stow](https://www.gnu.org/software/stow/), [bun](https://bun.sh), [uv](https://docs.astral.sh/uv/getting-started/installation)
+Prerequisite: `curl`.
+
+The installer bootstraps [Homebrew](https://brew.sh) if it is missing. Homebrew then installs GNU Stow, Bun, uv, formulae, and casks from `Brewfile`.
 
 ```bash
 git clone https://github.com/nicopujia/dotfiles.git
@@ -15,10 +17,24 @@ cd dotfiles
 ```
 .
 ├── install.sh               Sets everything up
+├── Brewfile                 Homebrew formulae and casks
+├── uv-tools.txt             uv-managed global tools
 ├── shell-config.sh          → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
 └── home/                    Stow package → symlinks to ~
     └── ...                  → ~/...
 ```
+
+## Packages
+
+Machine-level packages are managed in three places:
+
+- `Brewfile` controls Homebrew formulae and casks, including `bun` and `uv`
+- `uv-tools.txt` controls global tools installed with `uv tool install`
+- `home/.bun/install/global/package.json` controls global Bun packages
+
+Repo-level tools such as test frameworks, formatters, and formatter plugins should live in the repo that uses them, not in these dotfiles.
+
+Obsidian is installed as a cask, but Obsidian vault config is intentionally not tracked yet.
 
 ## Secrets
 

@@ -7,10 +7,9 @@ elif [ -h ~/.bash_aliases ]; then
     export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.bash_aliases)")" && pwd)"
 fi
 
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="$BUN_INSTALL/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/ruby/bin:$BUN_INSTALL/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 export EDITOR="nvim"
