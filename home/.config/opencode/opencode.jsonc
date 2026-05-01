@@ -26,6 +26,11 @@
     "grep-mcp": {
       "type": "local",
       "command": ["uvx", "grep-mcp"],
+      "enabled": false,
+    },
+    "linear-mcp": {
+      "type": "local",
+      "command": ["bunx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"],
       "enabled": true,
     },
   },
