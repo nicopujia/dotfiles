@@ -14,20 +14,10 @@ cd dotfiles
 
 ```
 .
-├── home/                    # Stow package → symlinks to ~
-│   ├── .config/
-│   │   ├── gh/             → ~/.config/gh/         (GitHub CLI)
-│   │   ├── nvim/           → ~/.config/nvim/       (Neovim)
-│   │   ├── opencode/       → ~/.config/opencode/   (OpenCode)
-│   │   ├── shared/         → ~/.config/shared/     (shared tool scripts)
-│   │   └── zed/            → ~/.config/zed/        (Zed editor)
-│   ├── .agents/            → ~/.agents/            (agent skills + lockfile)
-│   ├── .gitconfig          → ~/.gitconfig
-│   ├── .tmux.conf          → ~/.tmux.conf
-│   └── .ssh/
-│       └── config          → ~/.ssh/config
-├── install.sh              # Sets everything up
-└── shell-config.sh         → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
+├── install.sh               Sets everything up
+├── shell-config.sh          → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
+└── home/                    Stow package → symlinks to ~
+    └── ...                  → ~/...
 ```
 
 ## Secrets
