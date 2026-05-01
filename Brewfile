@@ -26,6 +26,7 @@ brew "render"
 brew "stow"
 brew "tesseract"
 brew "uv"
+brew "pnpm"
 
 cask "brave-browser"
 cask "cmux"
