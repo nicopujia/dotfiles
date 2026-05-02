@@ -102,8 +102,8 @@ brew() {
     shift || true
 
     command brew "$subcommand" "$@"
-    local status=$?
-    [[ "$status" -eq 0 ]] || return "$status"
+    local brew_status=$?
+    [[ "$brew_status" -eq 0 ]] || return "$brew_status"
 
     case "$subcommand" in
         install)
@@ -114,7 +114,7 @@ brew() {
             ;;
     esac
 
-    return "$status"
+    return "$brew_status"
 }
 
 # bun completions
