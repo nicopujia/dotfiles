@@ -79,6 +79,61 @@ install_uv_tools() {
     done < "$DOTFILES_DIR/uv-tools.txt"
 }
 
+install_cmux_omo_shim() {
+    local shim_dir="$HOME/.cmuxterm/omo-bin"
+    local shim="$shim_dir/opencode"
+
+    echo "Installing cmux omo opencode config shim..."
+    mkdir -p "$shim_dir"
+    cat > "$shim" <<'EOF'
+#!/bin/sh
+set -eu
+
+self_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+real_opencode=""
+old_ifs=$IFS
+IFS=:
+for path_dir in $PATH; do
+  [ -z "$path_dir" ] && path_dir=.
+  [ "$path_dir" = "$self_dir" ] && continue
+  candidate="$path_dir/opencode"
+  if [ -x "$candidate" ]; then
+    real_opencode="$candidate"
+    break
+  fi
+done
+IFS=$old_ifs
+
+if [ -z "$real_opencode" ]; then
+  echo "cmux omo: opencode not found in PATH" >&2
+  exit 127
+fi
+
+user_config="${XDG_CONFIG_HOME:-$HOME/.config}/opencode"
+omo_config="${OPENCODE_CONFIG_DIR:-$HOME/.cmuxterm/omo-config}"
+
+link_config() {
+  src="$1"
+  dst="$2"
+  if [ -f "$src" ]; then
+    rm -f "$dst"
+    ln -s "$src" "$dst"
+  fi
+}
+
+if [ -d "$user_config" ]; then
+  mkdir -p "$omo_config"
+  link_config "$user_config/oh-my-openagent.json" "$omo_config/oh-my-openagent.json"
+  link_config "$user_config/oh-my-openagent.jsonc" "$omo_config/oh-my-openagent.jsonc"
+  link_config "$user_config/oh-my-opencode.json" "$omo_config/oh-my-opencode.json"
+  link_config "$user_config/oh-my-opencode.jsonc" "$omo_config/oh-my-opencode.jsonc"
+fi
+
+exec "$real_opencode" "$@"
+EOF
+    chmod +x "$shim"
+}
+
 echo "Setting up dotfiles from $DOTFILES_DIR..."
 
 cd "$DOTFILES_DIR"
@@ -123,6 +178,8 @@ stow -t ~ home
 ensure_cmux_omo_config
 
 find "$DOTFILES_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
+
+install_cmux_omo_shim
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
