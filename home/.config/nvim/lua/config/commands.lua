@@ -35,27 +35,35 @@ vim.api.nvim_create_user_command("NvimExit", function(opts)
     vim.cmd(opts.bang and "quitall!" or "confirm quitall")
 end, { bang = true, desc = "Quit Neovim" })
 
-function _G.nvim_use_directory_quit_commands()
-    return vim.g.nvim_started_with_directory == true
-end
+vim.api.nvim_create_user_command("NvimDone", function(opts)
+    local ok, err = pcall(vim.cmd, opts.bang and "wall!" or "wall")
+    if not ok then
+        vim.api.nvim_err_writeln(err)
+        return
+    end
+
+    vim.cmd(opts.bang and "quitall!" or "quitall")
+end, { bang = true, desc = "Write all buffers and quit Neovim" })
 
 vim.cmd([[
-cnoreabbrev <expr> q getcmdtype() ==# ':' && getcmdline() ==# 'q' && v:lua.nvim_use_directory_quit_commands() ? 'Bclose' : 'q'
-cnoreabbrev <expr> q! getcmdtype() ==# ':' && getcmdline() ==# 'q!' && v:lua.nvim_use_directory_quit_commands() ? 'Bclose!' : 'q!'
-cnoreabbrev <expr> wq getcmdtype() ==# ':' && getcmdline() ==# 'wq' && v:lua.nvim_use_directory_quit_commands() ? 'BwriteClose' : 'wq'
-cnoreabbrev <expr> wq! getcmdtype() ==# ':' && getcmdline() ==# 'wq!' && v:lua.nvim_use_directory_quit_commands() ? 'BwriteClose!' : 'wq!'
-cnoreabbrev <expr> x getcmdtype() ==# ':' && getcmdline() ==# 'x' && v:lua.nvim_use_directory_quit_commands() ? 'BwriteClose' : 'x'
-cnoreabbrev <expr> x! getcmdtype() ==# ':' && getcmdline() ==# 'x!' && v:lua.nvim_use_directory_quit_commands() ? 'BwriteClose!' : 'x!'
-cnoreabbrev <expr> qa getcmdtype() ==# ':' && getcmdline() ==# 'qa' && v:lua.nvim_use_directory_quit_commands() ? 'BcloseAll' : 'qa'
-cnoreabbrev <expr> qa! getcmdtype() ==# ':' && getcmdline() ==# 'qa!' && v:lua.nvim_use_directory_quit_commands() ? 'BcloseAll!' : 'qa!'
-cnoreabbrev <expr> qall getcmdtype() ==# ':' && getcmdline() ==# 'qall' && v:lua.nvim_use_directory_quit_commands() ? 'BcloseAll' : 'qall'
-cnoreabbrev <expr> qall! getcmdtype() ==# ':' && getcmdline() ==# 'qall!' && v:lua.nvim_use_directory_quit_commands() ? 'BcloseAll!' : 'qall!'
-cnoreabbrev <expr> exit getcmdtype() ==# ':' && getcmdline() ==# 'exit' && v:lua.nvim_use_directory_quit_commands() ? 'NvimExit' : 'exit'
-cnoreabbrev <expr> exit! getcmdtype() ==# ':' && getcmdline() ==# 'exit!' && v:lua.nvim_use_directory_quit_commands() ? 'NvimExit!' : 'exit!'
-cnoreabbrev <expr> bd getcmdtype() ==# ':' && getcmdline() ==# 'bd' && v:lua.nvim_use_directory_quit_commands() ? 'Bdelete' : 'bd'
-cnoreabbrev <expr> bd! getcmdtype() ==# ':' && getcmdline() ==# 'bd!' && v:lua.nvim_use_directory_quit_commands() ? 'Bdelete!' : 'bd!'
-cnoreabbrev <expr> bdelete getcmdtype() ==# ':' && getcmdline() ==# 'bdelete' && v:lua.nvim_use_directory_quit_commands() ? 'Bdelete' : 'bdelete'
-cnoreabbrev <expr> bdelete! getcmdtype() ==# ':' && getcmdline() ==# 'bdelete!' && v:lua.nvim_use_directory_quit_commands() ? 'Bdelete!' : 'bdelete!'
+cnoreabbrev <expr> q getcmdtype() ==# ':' && getcmdline() ==# 'q' ? 'Bclose' : 'q'
+cnoreabbrev <expr> q! getcmdtype() ==# ':' && getcmdline() ==# 'q!' ? 'Bclose!' : 'q!'
+cnoreabbrev <expr> wq getcmdtype() ==# ':' && getcmdline() ==# 'wq' ? 'BwriteClose' : 'wq'
+cnoreabbrev <expr> wq! getcmdtype() ==# ':' && getcmdline() ==# 'wq!' ? 'BwriteClose!' : 'wq!'
+cnoreabbrev <expr> x getcmdtype() ==# ':' && getcmdline() ==# 'x' ? 'BwriteClose' : 'x'
+cnoreabbrev <expr> x! getcmdtype() ==# ':' && getcmdline() ==# 'x!' ? 'BwriteClose!' : 'x!'
+cnoreabbrev <expr> qa getcmdtype() ==# ':' && getcmdline() ==# 'qa' ? 'BcloseAll' : 'qa'
+cnoreabbrev <expr> qa! getcmdtype() ==# ':' && getcmdline() ==# 'qa!' ? 'BcloseAll!' : 'qa!'
+cnoreabbrev <expr> qall getcmdtype() ==# ':' && getcmdline() ==# 'qall' ? 'BcloseAll' : 'qall'
+cnoreabbrev <expr> qall! getcmdtype() ==# ':' && getcmdline() ==# 'qall!' ? 'BcloseAll!' : 'qall!'
+cnoreabbrev <expr> done getcmdtype() ==# ':' && getcmdline() ==# 'done' ? 'NvimDone' : 'done'
+cnoreabbrev <expr> done! getcmdtype() ==# ':' && getcmdline() ==# 'done!' ? 'NvimDone!' : 'done!'
+cnoreabbrev <expr> exit getcmdtype() ==# ':' && getcmdline() ==# 'exit' ? 'NvimExit' : 'exit'
+cnoreabbrev <expr> exit! getcmdtype() ==# ':' && getcmdline() ==# 'exit!' ? 'NvimExit!' : 'exit!'
+cnoreabbrev <expr> bd getcmdtype() ==# ':' && getcmdline() ==# 'bd' ? 'Bdelete' : 'bd'
+cnoreabbrev <expr> bd! getcmdtype() ==# ':' && getcmdline() ==# 'bd!' ? 'Bdelete!' : 'bd!'
+cnoreabbrev <expr> bdelete getcmdtype() ==# ':' && getcmdline() ==# 'bdelete' ? 'Bdelete' : 'bdelete'
+cnoreabbrev <expr> bdelete! getcmdtype() ==# ':' && getcmdline() ==# 'bdelete!' ? 'Bdelete!' : 'bdelete!'
 ]])
 
 git.setup()

@@ -19,7 +19,9 @@ Configured defaults: absolute and relative line numbers, 4 space tabs, spaces in
 `:wq!`: Force write and close the current buffer tab without quitting Neovim.
 `:qa`: Close all buffer tabs without quitting Neovim.
 `:qa!`: Force close all buffer tabs without quitting Neovim.
-`:exit`: Quit Neovim.
+`:done`: Write all buffers and quit Neovim.
+`:done!`: Force write all buffers and quit Neovim.
+`:exit`: Quit Neovim without writing buffers.
 
 Buffer tabs use `bufferline.nvim`, show LSP diagnostics, and reserve a left offset when Neo-tree is open.
 
