@@ -42,6 +42,31 @@ ensure_homebrew() {
     require_cmd brew "Homebrew installation completed, but brew is not available on PATH."
 }
 
+ensure_cmux_omo_config() {
+    local config_dir="$HOME/.cmuxterm/omo-config"
+    local source_config="$HOME/.config/opencode/oh-my-openagent.json"
+    local target_config="$config_dir/oh-my-openagent.json"
+
+    if [[ ! -e "$source_config" ]]; then
+        echo "Skipping cmux OMO config link; missing $source_config"
+        return
+    fi
+
+    mkdir -p "$config_dir"
+
+    if [[ -L "$target_config" && "$(readlink "$target_config")" == "$source_config" ]]; then
+        echo "cmux OMO config already linked"
+        return
+    fi
+
+    if [[ -e "$target_config" || -L "$target_config" ]]; then
+        mv "$target_config" "$target_config.bak-$(date +%Y%m%d-%H%M%S)"
+    fi
+
+    ln -s "$source_config" "$target_config"
+    echo "Linked cmux OMO config to $source_config"
+}
+
 install_uv_tools() {
     if [[ ! -f "$DOTFILES_DIR/uv-tools.txt" ]]; then
         return
@@ -94,6 +119,8 @@ find home -type f | while read -r file; do
 done
 
 stow -t ~ home
+
+ensure_cmux_omo_config
 
 find "$DOTFILES_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
 
