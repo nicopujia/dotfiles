@@ -10,6 +10,7 @@ vim.opt.softtabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+vim.opt.conceallevel = 2
 
 if vim.fn.executable("zsh") == 1 then
     vim.opt.shell = "zsh"
