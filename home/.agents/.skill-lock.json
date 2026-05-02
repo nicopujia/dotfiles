@@ -1,15 +1,6 @@
 {
   "version": 3,
   "skills": {
-    "agent-browser": {
-      "source": "vercel-labs/agent-browser",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
-      "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "67d654a553c1bd21b4cff0d9d61d75cd9a67e635",
-      "installedAt": "2026-04-14T15:22:13.669Z",
-      "updatedAt": "2026-04-14T15:22:13.669Z"
-    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
@@ -64,6 +55,51 @@
       "skillFolderHash": "386cf5ee75a4a3fe7f89c91deaf27bba8ae169c3",
       "installedAt": "2026-04-28T22:25:10.328Z",
       "updatedAt": "2026-04-28T22:25:10.328Z"
+    },
+    "cmux": {
+      "source": "manaflow-ai/cmux",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
+      "skillPath": "skills/cmux/SKILL.md",
+      "skillFolderHash": "9f7830d71f620fe6ead56e3bc91be7b599cbd997",
+      "installedAt": "2026-05-02T00:02:59.536Z",
+      "updatedAt": "2026-05-02T00:02:59.536Z"
+    },
+    "cmux-browser": {
+      "source": "manaflow-ai/cmux",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
+      "skillPath": "skills/cmux-browser/SKILL.md",
+      "skillFolderHash": "6d5dfc4de15faae37f932fa71f2bc9943bd2dafe",
+      "installedAt": "2026-05-02T00:03:46.246Z",
+      "updatedAt": "2026-05-02T00:03:46.246Z"
+    },
+    "cmux-markdown": {
+      "source": "manaflow-ai/cmux",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
+      "skillPath": "skills/cmux-markdown/SKILL.md",
+      "skillFolderHash": "c6cf70a1ad9f98867a652dc03ded80905c2706c8",
+      "installedAt": "2026-05-02T00:05:32.362Z",
+      "updatedAt": "2026-05-02T00:05:32.362Z"
+    },
+    "cmux-debug-windows": {
+      "source": "manaflow-ai/cmux",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
+      "skillPath": "skills/cmux-debug-windows/SKILL.md",
+      "skillFolderHash": "280f3cb196821b6b8808801f151a803d5efa8d93",
+      "installedAt": "2026-05-02T00:06:10.986Z",
+      "updatedAt": "2026-05-02T00:06:10.986Z"
+    },
+    "release": {
+      "source": "manaflow-ai/cmux",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
+      "skillPath": "skills/release/SKILL.md",
+      "skillFolderHash": "e98eed791aedc069022a5543c93440f0f50b5394",
+      "installedAt": "2026-05-02T00:06:52.999Z",
+      "updatedAt": "2026-05-02T00:06:52.999Z"
     }
   },
   "dismissed": {
