@@ -9,6 +9,10 @@ function M.should_use_light_theme()
         return false
     end
 
+    if vim.loop.os_uname().sysname ~= "Darwin" or vim.fn.executable("defaults") == 0 then
+        return false
+    end
+
     local system_theme = vim.fn.system({ "defaults", "read", "-g", "AppleInterfaceStyle" })
     return vim.v.shell_error ~= 0 or not system_theme:match("Dark")
 end
