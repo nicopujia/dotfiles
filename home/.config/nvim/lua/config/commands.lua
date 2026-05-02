@@ -13,6 +13,10 @@ vim.api.nvim_create_user_command("Bclose", function(opts)
     buffers.close_buffer(vim.api.nvim_get_current_buf(), { force = opts.bang })
 end, { bang = true, desc = "Close current buffer" })
 
+vim.api.nvim_create_user_command("BwriteClose", function(opts)
+    buffers.write_close_buffer(vim.api.nvim_get_current_buf(), { force = opts.bang })
+end, { bang = true, desc = "Write and close current buffer" })
+
 vim.api.nvim_create_user_command("BcloseAll", function(opts)
     buffers.close_all_buffers({ force = opts.bang })
 end, { bang = true, desc = "Close all buffers" })
@@ -34,6 +38,10 @@ end, { bang = true, desc = "Quit Neovim" })
 vim.cmd([[
 cnoreabbrev <expr> q getcmdtype() ==# ':' && getcmdline() ==# 'q' ? 'Bclose' : 'q'
 cnoreabbrev <expr> q! getcmdtype() ==# ':' && getcmdline() ==# 'q!' ? 'Bclose!' : 'q!'
+cnoreabbrev <expr> wq getcmdtype() ==# ':' && getcmdline() ==# 'wq' ? 'BwriteClose' : 'wq'
+cnoreabbrev <expr> wq! getcmdtype() ==# ':' && getcmdline() ==# 'wq!' ? 'BwriteClose!' : 'wq!'
+cnoreabbrev <expr> x getcmdtype() ==# ':' && getcmdline() ==# 'x' ? 'BwriteClose' : 'x'
+cnoreabbrev <expr> x! getcmdtype() ==# ':' && getcmdline() ==# 'x!' ? 'BwriteClose!' : 'x!'
 cnoreabbrev <expr> qa getcmdtype() ==# ':' && getcmdline() ==# 'qa' ? 'BcloseAll' : 'qa'
 cnoreabbrev <expr> qa! getcmdtype() ==# ':' && getcmdline() ==# 'qa!' ? 'BcloseAll!' : 'qa!'
 cnoreabbrev <expr> qall getcmdtype() ==# ':' && getcmdline() ==# 'qall' ? 'BcloseAll' : 'qall'

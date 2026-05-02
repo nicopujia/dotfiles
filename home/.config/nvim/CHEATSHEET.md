@@ -15,6 +15,8 @@ Configured defaults: absolute and relative line numbers, 4 space tabs, spaces in
 `gT`: Move to the previous buffer tab.
 `:q`: Close the current buffer tab without quitting Neovim.
 `:q!`: Force close the current buffer tab without quitting Neovim.
+`:wq`: Write and close the current buffer tab without quitting Neovim.
+`:wq!`: Force write and close the current buffer tab without quitting Neovim.
 `:qa`: Close all buffer tabs without quitting Neovim.
 `:qa!`: Force close all buffer tabs without quitting Neovim.
 `:exit`: Quit Neovim.

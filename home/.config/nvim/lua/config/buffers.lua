@@ -39,6 +39,29 @@ function M.close_buffer(buffer, opts)
     end)
 end
 
+function M.write_close_buffer(buffer, opts)
+    opts = opts or {}
+    local force = opts.force == true
+
+    if vim.bo[buffer].filetype == "neo-tree" then
+        return
+    end
+
+    if vim.bo[buffer].buftype ~= "" then
+        M.close_buffer(buffer, { force = force })
+        return
+    end
+
+    local write_command = force and "write!" or "write"
+    local ok, err = pcall(vim.cmd, write_command)
+    if not ok then
+        vim.api.nvim_err_writeln(err)
+        return
+    end
+
+    M.close_buffer(buffer, { force = force })
+end
+
 function M.close_all_buffers(opts)
     opts = opts or {}
     local force = opts.force == true
