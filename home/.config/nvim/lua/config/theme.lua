@@ -32,6 +32,13 @@ function M.apply_neotree_source_selector_highlights()
     vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { bg = "#1f1f1f", fg = "#1f1f1f" })
 end
 
+function M.apply_statusline_highlights()
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "#444444", fg = "#e6e6e6" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#262626", fg = "#b8b8b8" })
+    vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { bg = "#444444", fg = "#e6e6e6" })
+    vim.api.nvim_set_hl(0, "NeoTreeStatusLineNC", { bg = "#262626", fg = "#b8b8b8" })
+end
+
 function M.apply_bufferline_highlights()
     vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "#000000" })
     vim.api.nvim_set_hl(0, "BufferLineSeparator", { fg = "#000000", bg = "#000000" })

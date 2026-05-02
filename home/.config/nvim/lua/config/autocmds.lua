@@ -1,8 +1,11 @@
 local theme = require("config.theme")
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-    group = vim.api.nvim_create_augroup("NeotreeSourceSelectorHighlights", { clear = true }),
-    callback = theme.apply_neotree_source_selector_highlights,
+    group = vim.api.nvim_create_augroup("ThemeHighlights", { clear = true }),
+    callback = function()
+        theme.apply_neotree_source_selector_highlights()
+        theme.apply_statusline_highlights()
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {

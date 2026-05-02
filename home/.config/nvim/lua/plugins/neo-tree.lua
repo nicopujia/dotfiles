@@ -19,9 +19,11 @@ return {
         source_selector = {
             winbar = false,
             statusline = true,
+            padding = { left = 1, right = 0 },
+            highlight_background = "NeoTreeNormal",
             sources = {
-                { source = "filesystem", display_name = " Files" },
-                { source = "git_status", display_name = " Git" },
+                { source = "filesystem", display_name = "Files" },
+                { source = "git_status", display_name = "Git" },
             },
         },
         window = {
@@ -53,6 +55,7 @@ return {
     config = function(_, opts)
         require("neo-tree").setup(opts)
         theme.apply_neotree_source_selector_highlights()
+        theme.apply_statusline_highlights()
 
         vim.api.nvim_create_autocmd("WinClosed", {
             group = vim.api.nvim_create_augroup("KeepNeotreeSidebarWidth", { clear = true }),
