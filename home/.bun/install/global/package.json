@@ -3,7 +3,6 @@
     "@anthropic-ai/claude-code": "latest",
     "@code-yeongyu/comment-checker": "latest",
     "@google/gemini-cli": "latest",
-    "agent-browser": "latest",
     "firebase-tools": "latest",
     "opencode-ai": "latest",
     "opencode-antigravity-auth": "latest",

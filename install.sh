@@ -118,8 +118,4 @@ if [[ -f "$HOME/.bun/install/global/package.json" ]]; then
     bun install --cwd "$HOME/.bun/install/global"
 fi
 
-echo "Ensuring agent-browser browser binaries are installed..."
-agent-browser install
-uv run --no-project "$DOTFILES_DIR/home/.config/shared/agent-browser-prune.py"
-
 echo "Dotfiles setup complete!"
