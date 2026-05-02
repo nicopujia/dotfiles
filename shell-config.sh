@@ -30,7 +30,6 @@ alias oc="opencode"
 alias claudio="claude --dangerously-skip-permissions"
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
-alias bat="batcat"
 alias reload-tmux="tmux source-file ~/.tmux.conf"
 
 _brewfile_add_entry() {
