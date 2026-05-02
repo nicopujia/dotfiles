@@ -33,6 +33,90 @@ alias killp="kill-port"
 alias bat="batcat"
 alias reload-tmux="tmux source-file ~/.tmux.conf"
 
+_brewfile_add_entry() {
+    local entry="$1"
+    local brewfile="$DOTFILES_DIR/Brewfile"
+
+    [[ -n "$DOTFILES_DIR" && -f "$brewfile" ]] || return
+    grep -Fxq "$entry" "$brewfile" 2>/dev/null && return
+
+    printf '%s\n' "$entry" >> "$brewfile"
+    echo "Added to Brewfile: $entry"
+}
+
+_brewfile_record_install() {
+    local entry_type="brew"
+    local arg=""
+    local skip_next=0
+
+    for arg in "$@"; do
+        case "$arg" in
+            --cask|--casks)
+                entry_type="cask"
+                ;;
+            --formula|--formulae)
+                entry_type="brew"
+                ;;
+        esac
+    done
+
+    for arg in "$@"; do
+        if [[ "$skip_next" -eq 1 ]]; then
+            skip_next=0
+            continue
+        fi
+
+        case "$arg" in
+            --appdir)
+                skip_next=1
+                continue
+                ;;
+            --color|--display-times|--env|--fetch-HEAD|--formula|--formulae|--force-bottle|--HEAD|--ignore-dependencies|--interactive|--keep-tmp|--quiet|--verbose|--debug|--build-from-source|--build-bottle|--cask|--casks)
+                continue
+                ;;
+            --appdir=*|--*)
+                continue
+                ;;
+        esac
+
+        _brewfile_add_entry "$entry_type \"$arg\""
+    done
+}
+
+_brewfile_record_tap() {
+    local arg=""
+
+    for arg in "$@"; do
+        [[ "$arg" == --* ]] && continue
+        _brewfile_add_entry "tap \"$arg\""
+    done
+}
+
+brew() {
+    if [[ "$#" -eq 0 ]]; then
+        command brew
+        return $?
+    fi
+
+    local subcommand="$1"
+    shift || true
+
+    command brew "$subcommand" "$@"
+    local status=$?
+    [[ "$status" -eq 0 ]] || return "$status"
+
+    case "$subcommand" in
+        install)
+            _brewfile_record_install "$@"
+            ;;
+        tap)
+            _brewfile_record_tap "$@"
+            ;;
+    esac
+
+    return "$status"
+}
+
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
