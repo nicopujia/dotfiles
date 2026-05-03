@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@anthropic-ai/claude-code": "latest",
+    "@mariozechner/pi-coding-agent": "^0.72.1",
     "firebase-tools": "latest",
     "opencode-ai": "latest",
     "opencode-antigravity-auth": "latest",
