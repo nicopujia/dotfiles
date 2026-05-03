@@ -91,15 +91,6 @@
       "skillFolderHash": "280f3cb196821b6b8808801f151a803d5efa8d93",
       "installedAt": "2026-05-02T00:06:10.986Z",
       "updatedAt": "2026-05-02T00:06:10.986Z"
-    },
-    "release": {
-      "source": "manaflow-ai/cmux",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/manaflow-ai/cmux.git",
-      "skillPath": "skills/release/SKILL.md",
-      "skillFolderHash": "e98eed791aedc069022a5543c93440f0f50b5394",
-      "installedAt": "2026-05-02T00:06:52.999Z",
-      "updatedAt": "2026-05-02T00:06:52.999Z"
     }
   },
   "dismissed": {

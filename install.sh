@@ -2,6 +2,7 @@
 set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MISC_DIR="$DOTFILES_DIR/misc"
 
 require_cmd() {
     if ! command -v "$1" >/dev/null 2>&1; then
@@ -68,7 +69,7 @@ ensure_cmux_omo_config() {
 }
 
 install_uv_tools() {
-    if [[ ! -f "$DOTFILES_DIR/uv-tools.txt" ]]; then
+    if [[ ! -f "$MISC_DIR/uv-tools.txt" ]]; then
         return
     fi
 
@@ -76,7 +77,7 @@ install_uv_tools() {
     while IFS= read -r tool; do
         [[ -z "$tool" || "$tool" == \#* ]] && continue
         uv tool install "$tool"
-    done < "$DOTFILES_DIR/uv-tools.txt"
+    done < "$MISC_DIR/uv-tools.txt"
 }
 
 install_cmux_omo_shim() {
@@ -141,7 +142,7 @@ cd "$DOTFILES_DIR"
 ensure_homebrew
 
 echo "Installing Homebrew packages..."
-brew bundle --file "$DOTFILES_DIR/Brewfile"
+brew bundle --file "$MISC_DIR/Brewfile"
 
 echo "Checking required setup binaries..."
 require_cmd stow "Install GNU Stow before running this setup."
@@ -158,26 +159,26 @@ if [[ -d "$HOME/.agents" && ! -L "$HOME/.agents" ]]; then
     rm -rf "$HOME/.agents"
     echo "  Removed existing $HOME/.agents directory"
 fi
-find home -mindepth 1 -type d | sort -r | while read -r dir; do
-    target="$HOME/${dir#home/}"
+find "$MISC_DIR/home" -mindepth 1 -type d | sort -r | while read -r dir; do
+    target="$HOME/${dir#"$MISC_DIR/home/"}"
     if [[ -L "$target" ]]; then
         rm -f "$target"
         echo "  Removed dir symlink $target"
     fi
 done
-find home -type f | while read -r file; do
-    target="$HOME/${file#home/}"
+find "$MISC_DIR/home" -type f | while read -r file; do
+    target="$HOME/${file#"$MISC_DIR/home/"}"
     if [[ -e "$target" || -L "$target" ]]; then
         rm -f "$target"
         echo "  Removed $target"
     fi
 done
 
-stow -t ~ home
+stow -d "$MISC_DIR" -t ~ home
 
 ensure_cmux_omo_config
 
-find "$DOTFILES_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
+find "$MISC_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
 
 install_cmux_omo_shim
 
@@ -185,11 +186,11 @@ install_cmux_omo_shim
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Detected macOS, linking shell-config.sh to ~/.zshrc"
     rm -f ~/.zshrc
-    ln -sf "$DOTFILES_DIR/shell-config.sh" ~/.zshrc
+    ln -sf "$MISC_DIR/shell-config.sh" ~/.zshrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Detected Linux, linking shell-config.sh to ~/.bash_aliases"
     rm -f ~/.bash_aliases
-    ln -sf "$DOTFILES_DIR/shell-config.sh" ~/.bash_aliases
+    ln -sf "$MISC_DIR/shell-config.sh" ~/.bash_aliases
 else
     echo "Unknown OS: $OSTYPE"
     exit 1
