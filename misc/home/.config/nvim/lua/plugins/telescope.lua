@@ -30,7 +30,16 @@ return {
         telescope.load_extension("fzf")
 
         vim.keymap.set("n", "<leader>sf", function()
-            builtin.find_files({ hidden = true, no_ignore = false })
+            builtin.find_files({
+                find_command = {
+                    "rg",
+                    "--files",
+                    "--hidden",
+                    "--no-ignore",
+                    "--glob=!**/.git/*",
+                    "--glob=!**/node_modules/*",
+                },
+            })
         end, { desc = "Search files" })
         vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Search globally" })
         vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Search buffers" })

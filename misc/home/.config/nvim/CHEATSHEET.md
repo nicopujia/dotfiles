@@ -35,7 +35,7 @@ Git hunks show in the sign column next to line numbers: `+` added, `~` changed, 
 
 ## Telescope
 
-`<leader>sf`: Search files, including dotfiles, while respecting ignores.
+`<leader>sf`: Search files, including ignored dotfiles like `.env`, except `.git` and `node_modules`.
 `<leader>sg`: Search text across the project, including hidden files and folders except `.git` and `node_modules`.
 `<leader>sb`: Search open buffers.
 `<leader>sr`: Search recent files in a dropdown.
