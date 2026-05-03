@@ -35,8 +35,8 @@ Git hunks show in the sign column next to line numbers: `+` added, `~` changed, 
 
 ## Telescope
 
-`<leader>sf`: Search files, including ignored dotfiles like `.env`, except `.git` and `node_modules`.
-`<leader>sg`: Search text across the project, including hidden files and folders except `.git` and `node_modules`.
+`<leader>sf`: Search files, including ignored dotfiles like `.env`, except `.git`, `node_modules`, and `.venv`.
+`<leader>sg`: Search text across the project, including hidden files and folders except `.git`, `node_modules`, and `.venv`.
 `<leader>sb`: Search open buffers.
 `<leader>sr`: Search recent files in a dropdown.
 `<leader>sc`: Search commands in a dropdown.
@@ -45,7 +45,7 @@ Git hunks show in the sign column next to line numbers: `+` added, `~` changed, 
 `<leader>sS`: Search workspace symbols.
 `<leader>sd`: Search diagnostics.
 
-Telescope uses the `fzf` extension and ignores `.git` and `node_modules`.
+Telescope uses the `fzf` extension and ignores `.git`, `node_modules`, and `.venv`.
 
 ## LSP Mappings
 

@@ -12,7 +12,7 @@ return {
 
         telescope.setup({
             defaults = {
-                file_ignore_patterns = { "node_modules", ".git/" },
+                file_ignore_patterns = { "node_modules", ".git/", ".venv/" },
                 vimgrep_arguments = {
                     "rg",
                     "--color=never",
@@ -24,6 +24,7 @@ return {
                     "--hidden",
                     "--glob=!**/.git/*",
                     "--glob=!**/node_modules/*",
+                    "--glob=!**/.venv/*",
                 },
             },
         })
@@ -38,6 +39,7 @@ return {
                     "--no-ignore",
                     "--glob=!**/.git/*",
                     "--glob=!**/node_modules/*",
+                    "--glob=!**/.venv/*",
                 },
             })
         end, { desc = "Search files" })
