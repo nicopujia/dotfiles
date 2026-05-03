@@ -33,6 +33,9 @@ alias g="git"
 alias dk="docker"
 alias oc="opencode"
 alias claudio="claude --dangerously-skip-permissions"
+if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
+    alias tmux="/usr/bin/tmux"
+fi
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
 alias reload-tmux="tmux source-file ~/.tmux.conf"
