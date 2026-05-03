@@ -1,11 +1,16 @@
 # Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
-if [ -h ~/.zshrc ]; then
+if [ -n "${ZSH_VERSION:-}" ]; then
     bindkey -v
-    export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.zshrc)")" && pwd)"
-elif [ -h ~/.bash_aliases ]; then
+elif [ -n "${BASH_VERSION:-}" ]; then
     set -o vi
-    export DOTFILES_DIR="$(cd "$(dirname "$(readlink ~/.bash_aliases)")" && pwd)"
 fi
+
+_dotfiles_shell_config="${BASH_SOURCE[0]:-${(%):-%N}}"
+if [ -L "$_dotfiles_shell_config" ]; then
+    _dotfiles_shell_config="$(readlink "$_dotfiles_shell_config")"
+fi
+export DOTFILES_DIR="$(cd "$(dirname "$_dotfiles_shell_config")" && pwd)"
+export DOTFILES_MISC_DIR="$DOTFILES_DIR"
 
 export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
@@ -18,7 +23,7 @@ alias q="exit"
 alias ":q"="exit"
 alias c="clear"
 alias cls="clear"
-alias vps="ssh nico@pujia"
+alias vps="ssh -t nico@pujia"
 alias fvps="mosh -p 60001 --server=/home/linuxbrew/.linuxbrew/bin/mosh-server nico@pujia"
 alias config="nvim $DOTFILES_DIR/shell-config.sh"
 alias cfg="config"
@@ -117,7 +122,7 @@ brew() {
 }
 
 # bun completions
-[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+[ -n "${ZSH_VERSION:-}" ] && [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # ghostty <> tmux patch
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then

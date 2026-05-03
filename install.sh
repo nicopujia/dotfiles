@@ -191,6 +191,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Detected Linux, linking shell-config.sh to ~/.bash_aliases"
     rm -f ~/.bash_aliases
     ln -sf "$MISC_DIR/shell-config.sh" ~/.bash_aliases
+    if command -v zsh >/dev/null 2>&1; then
+        echo "Detected zsh, linking shell-config.sh to ~/.zshrc"
+        rm -f ~/.zshrc
+        ln -sf "$MISC_DIR/shell-config.sh" ~/.zshrc
+    fi
 else
     echo "Unknown OS: $OSTYPE"
     exit 1
