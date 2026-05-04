@@ -33,6 +33,7 @@ alias g="git"
 alias dk="docker"
 alias oc="opencode"
 alias claudio="claude --dangerously-skip-permissions"
+alias cx="codex --yolo"
 if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
     alias tmux="/usr/bin/tmux"
 fi
