@@ -1,8 +1,10 @@
 # Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
 if [ -n "${ZSH_VERSION:-}" ]; then
     bindkey -v
+    eval "$(zoxide init zsh)"
 elif [ -n "${BASH_VERSION:-}" ]; then
     set -o vi
+    eval "$(zoxide init bash)"
 fi
 
 _dotfiles_shell_config="${BASH_SOURCE[0]:-${(%):-%N}}"
@@ -40,6 +42,10 @@ fi
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
 alias reload-tmux="tmux source-file ~/.tmux.conf"
+
+if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
+    alias tmux="/usr/bin/tmux"
+fi
 
 _brewfile_add_entry() {
     local entry="$1"
