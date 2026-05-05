@@ -1,4 +1,4 @@
-const BELL_EVENTS = new Set(["session.idle", "session.error", "permission.asked"])
+const BELL_EVENTS = new Set(["session.idle", "session.error", "permission.asked", "question.asked"])
 
 export const TerminalBellPlugin = async () => {
   return {
