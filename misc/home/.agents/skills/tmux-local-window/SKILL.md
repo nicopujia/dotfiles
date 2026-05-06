@@ -1,6 +1,6 @@
 ---
 name: tmux-local-window
-description: Ensure local servers are started in the currently active tmux pane/window instead of spawning a new tmux session.
+description: Use when asked to run local dev servers; start them in the current tmux pane/window, not a new tmux session.
 ---
 
 # Same-Pane Local Server Runs
