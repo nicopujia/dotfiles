@@ -1,5 +1,6 @@
 local buffers = require("config.buffers")
 local theme = require("config.theme")
+local fill_bg = theme.use_light_theme and "#e5e5e5" or "#000000"
 
 return {
     "akinsho/bufferline.nvim",
@@ -12,11 +13,11 @@ return {
     },
     opts = {
         highlights = {
-            fill = { bg = "#000000" },
-            separator = { fg = "#000000", bg = "#000000" },
-            separator_visible = { fg = "#000000", bg = "#000000" },
-            separator_selected = { fg = "#000000", bg = "#000000" },
-            indicator_selected = { fg = "#ff9700", bg = "#000000" },
+            fill = { bg = fill_bg },
+            separator = { fg = fill_bg, bg = fill_bg },
+            separator_visible = { fg = fill_bg, bg = fill_bg },
+            separator_selected = { fg = fill_bg, bg = fill_bg },
+            indicator_selected = { fg = "#ff9700", bg = fill_bg },
         },
         options = {
             close_command = buffers.close_buffer,
