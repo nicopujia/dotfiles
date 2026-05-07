@@ -83,7 +83,7 @@
     }
   },
   "tmux": {
-    "enabled": true,
+    "enabled": false,
     "main_pane_size": 50,
     "main_pane_min_width": 60,
     "agent_pane_min_width": 30
