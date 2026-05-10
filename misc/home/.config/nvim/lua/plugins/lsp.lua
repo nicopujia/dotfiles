@@ -8,6 +8,28 @@ return {
         config = function()
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+            vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+                if config == nil then
+                    config = {}
+                end
+                config.border = "rounded"
+                config.max_width = 220
+                config.max_height = 120
+                config.wrap = true
+                config.focusable = false
+                return vim.lsp.handlers.hover(_, result, ctx, config)
+            end
+
+            vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config)
+                if config == nil then
+                    config = {}
+                end
+                config.border = "rounded"
+                config.max_width = 220
+                config.wrap = true
+                return vim.lsp.handlers.signature_help(_, result, ctx, config)
+            end
+
             vim.lsp.config("ty", {
                 capabilities = capabilities,
                 settings = {
@@ -32,6 +54,10 @@ return {
                     },
                 },
             })
+
+            vim.lsp.config("ts_ls", {
+                capabilities = capabilities,
+            })
         end,
     },
     {
@@ -46,7 +72,7 @@ return {
         dependencies = { "mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "ruff", "lua_ls" },
+                ensure_installed = { "ruff", "lua_ls", "ts_ls" },
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -64,6 +90,12 @@ return {
                         vim.tbl_extend("force", opts, { desc = "Code action" }))
                     vim.keymap.set("n", "<leader>f", vim.lsp.buf.format,
                         vim.tbl_extend("force", opts, { desc = "Format buffer" }))
+                    vim.keymap.set("n", "<leader>ld", function()
+                        vim.diagnostic.open_float(nil, {
+                            scope = "line",
+                            border = "rounded",
+                        })
+                    end, vim.tbl_extend("force", opts, { desc = "Show full line diagnostics" }))
                     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
                         vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
                     vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
@@ -83,7 +115,7 @@ return {
                 end,
             })
 
-            vim.lsp.enable({ "ty", "ruff", "lua_ls" })
+            vim.lsp.enable({ "ty", "ruff", "lua_ls", "ts_ls" })
         end,
     },
 }
