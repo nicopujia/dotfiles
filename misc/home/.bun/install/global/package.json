@@ -3,7 +3,7 @@
     "@anthropic-ai/claude-code": "latest",
     "@mariozechner/pi-coding-agent": "latest",
     "firebase-tools": "latest",
-    "opencode-ai": "1.14.46",
+    "opencode-ai": "latest",
     "opencode-antigravity-auth": "latest",
     "portless": "latest",
     "skills": "latest",
