@@ -91,6 +91,16 @@
       "skillFolderHash": "280f3cb196821b6b8808801f151a803d5efa8d93",
       "installedAt": "2026-05-02T00:06:10.986Z",
       "updatedAt": "2026-05-02T00:06:10.986Z"
+    },
+    "tdd": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/tdd/SKILL.md",
+      "skillFolderHash": "75beb3030b4c979205dd771ff85ac600baeb68f4",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-05-10T19:43:22.288Z",
+      "updatedAt": "2026-05-10T19:43:22.288Z"
     }
   },
   "dismissed": {
@@ -103,6 +113,7 @@
     "codex",
     "cursor",
     "deepagents",
+    "dexto",
     "firebender",
     "gemini-cli",
     "github-copilot",
