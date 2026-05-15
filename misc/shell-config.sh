@@ -34,6 +34,7 @@ alias nvimrc="nvim $DOTFILES_DIR/home/.config/nvim/init.lua"
 alias g="git"
 alias dk="docker"
 alias oc="opencode"
+alias omo='OPENCODE_CONFIG_CONTENT="{ \"\$schema\": \"https://opencode.ai/config.json\", \"permission\": \"allow\" }" opencode'
 alias claudio="claude --dangerously-skip-permissions"
 alias cx="codex --yolo"
 if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
