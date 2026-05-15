@@ -7,29 +7,30 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "terminal": {},
   "$schema": "zed://schemas/settings",
   "disable_ai": true,
   "cli_default_open_behavior": "new_window",
   "collaboration_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "outline_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "project_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Monokai Night",
+    "dark": "Monokai Night"
   },
   "minimap": {
-    "show": "never",
+    "show": "never"
   },
   "git_panel": {
     "dock": "left",
-    "tree_view": false,
+    "tree_view": false
   },
   "ssh_connections": [
     {
@@ -38,22 +39,22 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/"],
+          "paths": ["/"]
         },
         {
-          "paths": ["/home/nico"],
+          "paths": ["/home/nico"]
         },
         {
-          "paths": ["/home/nico/justralph.it"],
-        },
+          "paths": ["/home/nico/justralph.it"]
+        }
       ],
-      "nickname": "pujia",
+      "nickname": "pujia"
     },
     {
       "host": "pujia",
       "args": [],
-      "projects": [],
-    },
+      "projects": []
+    }
   ],
   "vim_mode": true,
   "show_edit_predictions": false,
@@ -61,64 +62,65 @@
   "base_keymap": "VSCode",
   "relative_line_numbers": "enabled",
   "completions": {
-    "words_min_length": 0,
+    "words_min_length": 0
   },
   "edit_predictions": {
-    "mode": "subtle",
+    "mode": "subtle"
   },
   "vim": {
-    "toggle_relative_line_numbers": true,
+    "toggle_relative_line_numbers": true
   },
   "agent": {
     "default_profile": "ask",
     "default_model": {
       "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "claude-haiku-4.5",
+      "model": "claude-haiku-4.5"
     },
     "favorite_models": [],
-    "model_parameters": [],
+    "model_parameters": []
   },
   "agent_servers": {
     "codex-acp": {
       "default_config_options": {
-        "mode": "full-access",
+        "mode": "full-access"
       },
-      "type": "registry",
+      "type": "registry"
     },
     "opencode": {
       "type": "extension",
       "favorite_models": [
         "anthropic/claude-haiku-4-5",
         "anthropic/claude-sonnet-4-5",
-        "anthropic/claude-opus-4-6",
+        "anthropic/claude-opus-4-6"
       ],
       "default_config_options": {
-        "model": "openai/gpt-5.4/medium",
+        "model": "openai/gpt-5.4/medium"
       },
       "favorite_config_option_values": {
-        "model": ["openai/gpt-5.4", "openai/gpt-5.4/medium"],
-      },
-    },
+        "model": ["openai/gpt-5.4", "openai/gpt-5.4/medium"]
+      }
+    }
   },
   "file_types": {
-    "svg": ["html"],
+    "svg": ["html"]
   },
   "languages": {
     "XML": {
-      "formatter": "language_server",
+      "formatter": "language_server"
     },
     "HTML": {
-      "tab_size": 2,
+      "tab_size": 2
     },
     "CSS": {
-      "tab_size": 2,
+      "tab_size": 2
     },
     "JavaScript": {
-      "tab_size": 2,
+      "tab_size": 2
     },
     "TypeScript": {
       "tab_size": 2,
+      "preferred_line_length": 120
     },
     "Python": {
       "language_servers": ["ty", "ruff"],
@@ -128,19 +130,19 @@
           "command": "bash",
           "arguments": [
             "-lc",
-            "$HOME/.config/shared/python-format.sh \"{buffer_path}\"",
-          ],
-        },
-      },
-    },
+            "$HOME/.config/shared/python-format.sh \"{buffer_path}\""
+          ]
+        }
+      }
+    }
   },
   "lsp": {
     "ty": {
       "binary": {
         "path": "bash",
-        "arguments": ["-lc", "$HOME/.config/shared/python-lsp.sh"],
-      },
-    },
+        "arguments": ["-lc", "$HOME/.config/shared/python-lsp.sh"]
+      }
+    }
   },
-  "context_servers": {},
+  "context_servers": {}
 }
