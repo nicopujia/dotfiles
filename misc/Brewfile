@@ -2,7 +2,6 @@ tap "oven-sh/bun"
 
 brew "awscli"
 brew "bat"
-brew "beads"
 brew "bettercap"
 brew "cloc"
 brew "corepack"
