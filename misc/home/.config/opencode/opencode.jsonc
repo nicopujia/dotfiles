@@ -22,6 +22,9 @@
     "pyright": {
       "disabled": true,
     },
+    "typescript": {
+      "disabled": true,
+    },
   },
   "mcp": {
     "grep-mcp": {
