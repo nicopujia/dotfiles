@@ -43,31 +43,6 @@ ensure_homebrew() {
     require_cmd brew "Homebrew installation completed, but brew is not available on PATH."
 }
 
-ensure_cmux_omo_config() {
-    local config_dir="$HOME/.cmuxterm/omo-config"
-    local source_config="$HOME/.config/opencode/oh-my-openagent.json"
-    local target_config="$config_dir/oh-my-openagent.json"
-
-    if [[ ! -e "$source_config" ]]; then
-        echo "Skipping cmux OMO config link; missing $source_config"
-        return
-    fi
-
-    mkdir -p "$config_dir"
-
-    if [[ -L "$target_config" && "$(readlink "$target_config")" == "$source_config" ]]; then
-        echo "cmux OMO config already linked"
-        return
-    fi
-
-    if [[ -e "$target_config" || -L "$target_config" ]]; then
-        mv "$target_config" "$target_config.bak-$(date +%Y%m%d-%H%M%S)"
-    fi
-
-    ln -s "$source_config" "$target_config"
-    echo "Linked cmux OMO config to $source_config"
-}
-
 install_uv_tools() {
     if [[ ! -f "$MISC_DIR/uv-tools.txt" ]]; then
         return
@@ -78,61 +53,6 @@ install_uv_tools() {
         [[ -z "$tool" || "$tool" == \#* ]] && continue
         uv tool install "$tool"
     done < "$MISC_DIR/uv-tools.txt"
-}
-
-install_cmux_omo_shim() {
-    local shim_dir="$HOME/.cmuxterm/omo-bin"
-    local shim="$shim_dir/opencode"
-
-    echo "Installing cmux omo opencode config shim..."
-    mkdir -p "$shim_dir"
-    cat > "$shim" <<'EOF'
-#!/bin/sh
-set -eu
-
-self_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
-real_opencode=""
-old_ifs=$IFS
-IFS=:
-for path_dir in $PATH; do
-  [ -z "$path_dir" ] && path_dir=.
-  [ "$path_dir" = "$self_dir" ] && continue
-  candidate="$path_dir/opencode"
-  if [ -x "$candidate" ]; then
-    real_opencode="$candidate"
-    break
-  fi
-done
-IFS=$old_ifs
-
-if [ -z "$real_opencode" ]; then
-  echo "cmux omo: opencode not found in PATH" >&2
-  exit 127
-fi
-
-user_config="${XDG_CONFIG_HOME:-$HOME/.config}/opencode"
-omo_config="${OPENCODE_CONFIG_DIR:-$HOME/.cmuxterm/omo-config}"
-
-link_config() {
-  src="$1"
-  dst="$2"
-  if [ -f "$src" ]; then
-    rm -f "$dst"
-    ln -s "$src" "$dst"
-  fi
-}
-
-if [ -d "$user_config" ]; then
-  mkdir -p "$omo_config"
-  link_config "$user_config/oh-my-openagent.json" "$omo_config/oh-my-openagent.json"
-  link_config "$user_config/oh-my-openagent.jsonc" "$omo_config/oh-my-openagent.jsonc"
-  link_config "$user_config/oh-my-opencode.json" "$omo_config/oh-my-opencode.json"
-  link_config "$user_config/oh-my-opencode.jsonc" "$omo_config/oh-my-opencode.jsonc"
-fi
-
-exec "$real_opencode" "$@"
-EOF
-    chmod +x "$shim"
 }
 
 echo "Setting up dotfiles from $DOTFILES_DIR..."
@@ -175,10 +95,6 @@ find "$MISC_DIR/home" -type f | while read -r file; do
 done
 
 stow -d "$MISC_DIR" -t ~ home
-
-ensure_cmux_omo_config
-
-install_cmux_omo_shim
 
 # Handle shell config based on OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
