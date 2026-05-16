@@ -3,21 +3,23 @@
   "plugin": ["oh-my-openagent@latest"],
   "command": {
     "commit": {
-      "description": "Commit and push frequently",
+      "description": "Commit frequently.",
+      "template": "Once you're sure things work, frequently make atomic commits. Do it now and throughout the rest of this session.",
+    },
+    "commit-push": {
+      "description": "Commit and push frequently.",
       "template": "Once you're sure things work, frequently make atomic commits and push. Do it now and throughout the rest of this session.",
     },
     "god": {
-      "description": "Indicate the available power and its expectations.",
-      "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would. Start by onboarding yourself in the current repo investigating it using 10 parallel subagents. You will then receive several tasks to solve, but don't solve them yourself; be an orchestrator -- ALWAYS spawn a subagent for each of those tasks. Be ready to receive more tasks as the subagents work. Besides, those subagents should also spawn their own subagents for each task phase (reserach, planning, implementation, testing). Last but not least, commit frequently and push after you ensure things work. Ask any needed clarifying questions before starting a task.",
+      "description": "Full power.",
+      "template": "You have full root access on this machine, so you have the same power as a human dev. You can install anything you need, test things however it's needed to ensure they actually work, etc. Thus, I expect you to have the same quality of results as a human senior engineer would. Start by onboarding yourself in the current repo investigating it using $1 parallel subagents. You will then receive several tasks to solve, but don't solve them yourself; instead, be an orchestrator -- ALWAYS spawn a subagent for each of those tasks. Besides, those subagents should also spawn their own subagents for each task phase (reserach, planning, implementation, testing). Commit frequently and push after you ensure things work. Be ready to receive more tasks as the subagents work. Ask any needed clarifying questions before starting a task. Let's go!",
     },
     "onboard": {
       "description": "Onboard into repo using subagents.",
-      "template": "Onboard yourself in the current repo investigating it using 10 parallel subagents.",
+      "template": "Onboard yourself in the current repo investigating it using $1 parallel subagents.",
       "subtask": true,
     },
   },
-  // Keep Python formatter/LSP hooks out of the global opencode config.
-  // A global plugin handles lightweight post-edit Ruff formatting instead.
   "lsp": {
     "pyright": {
       "disabled": true,
@@ -27,11 +29,6 @@
     },
   },
   "mcp": {
-    "grep-mcp": {
-      "type": "local",
-      "command": ["uvx", "grep-mcp"],
-      "enabled": false,
-    },
     "linear-mcp": {
       "type": "local",
       "command": ["bunx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"],
