@@ -178,8 +178,6 @@ stow -d "$MISC_DIR" -t ~ home
 
 ensure_cmux_omo_config
 
-find "$MISC_DIR/home/.config/shared" -type f -name "*.sh" -exec chmod +x {} \;
-
 install_cmux_omo_shim
 
 # Handle shell config based on OS

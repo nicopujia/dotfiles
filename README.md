@@ -68,11 +68,6 @@ nvim ~/dotfiles/misc/home/.config/nvim/init.lua  # Edit nvim config
 cd ~/dotfiles && git pull
 ```
 
-Python tooling for Zed and OpenCode is centralized in `misc/home/.config/shared/`:
-
-- `misc/home/.config/shared/python-format.sh` keeps formatting behavior aligned
-- `misc/home/.config/shared/python-lsp.sh` keeps the Python LSP launcher aligned
-
 **If you edited the live file directly** (e.g., `~/.zshrc`), copy changes back:
 
 ```bash

@@ -123,24 +123,17 @@
       "preferred_line_length": 120
     },
     "Python": {
-      "language_servers": ["ty", "ruff"],
       "format_on_save": "on",
       "formatter": {
         "external": {
           "command": "bash",
           "arguments": [
             "-lc",
-            "$HOME/.config/shared/python-format.sh \"{buffer_path}\""
+            "set -e; if [ -z \"$1\" ]; then printf '%s\\n' 'zed python formatter: missing buffer path' >&2; exit 1; fi; file_path=\"$1\"; tmp_dir=$(mktemp -d); input_file=\"$tmp_dir/input.py\"; checked_file=\"$tmp_dir/checked.py\"; cleanup() { rm -rf \"$tmp_dir\"; }; trap cleanup EXIT HUP INT TERM; cat > \"$input_file\"; uv run --no-project ruff check --exit-zero --fix --stdin-filename \"$file_path\" - < \"$input_file\" > \"$checked_file\"; uv run --no-project ruff format --stdin-filename \"$file_path\" - < \"$checked_file\"",
+            "python-format",
+            "{buffer_path}"
           ]
         }
-      }
-    }
-  },
-  "lsp": {
-    "ty": {
-      "binary": {
-        "path": "bash",
-        "arguments": ["-lc", "$HOME/.config/shared/python-lsp.sh"]
       }
     }
   },
