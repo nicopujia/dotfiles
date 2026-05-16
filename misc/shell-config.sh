@@ -1,9 +1,49 @@
 # Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
 if [ -n "${ZSH_VERSION:-}" ]; then
     bindkey -v
+
+    # Make Esc switch to normal mode quickly.
+    # If Option/Alt shortcuts feel flaky, change this to 10.
+    KEYTIMEOUT=1
+
+    # Vim-like cursor in zsh vi mode:
+    # - insert mode: bar cursor
+    # - normal mode: block cursor
+    zle-keymap-select() {
+        case "$KEYMAP" in
+            vicmd)
+                printf '\e[2 q' # steady block
+                ;;
+            viins|main)
+                printf '\e[6 q' # steady bar
+                ;;
+        esac
+    }
+
+    zle-line-init() {
+        zle-keymap-select
+    }
+
+    zle-line-finish() {
+        printf '\e[0 q'
+    }
+
+    # ZLE (Zsh Line Editor) is zsh's interactive prompt editor.
+    # Register these functions as ZLE widgets/hooks so zsh calls them
+    # when the prompt starts, finishes, or switches between vi keymaps.
+    zle -N zle-keymap-select
+    zle -N zle-line-init
+    zle -N zle-line-finish
+
     eval "$(zoxide init zsh)"
 elif [ -n "${BASH_VERSION:-}" ]; then
     set -o vi
+
+    # Vim-like cursor in bash vi mode when supported by Readline.
+    bind 'set show-mode-in-prompt on'
+    bind 'set vi-ins-mode-string \1\e[6 q\2'
+    bind 'set vi-cmd-mode-string \1\e[2 q\2'
+
     eval "$(zoxide init bash)"
 fi
 
