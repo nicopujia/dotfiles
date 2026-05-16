@@ -91,6 +91,15 @@
       },
     },
   },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "typeCheckingMode": "recommended",
+        },
+      },
+    },
+  },
   "file_types": {
     "svg": ["html"],
   },
