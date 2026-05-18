@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@anthropic-ai/claude-code": "latest",
+    "@google/gemini-cli": "latest",
     "@mariozechner/pi-coding-agent": "latest",
     "firebase-tools": "latest",
     "opencode-ai": "latest",

@@ -119,6 +119,10 @@
     "flexible": false,
   },
   "agent_servers": {
+    "gemini": {
+      "default_mode": "yolo",
+      "type": "registry",
+    },
     "codex-acp": {
       "default_config_options": {
         "mode": "full-access",
