@@ -1,0 +1,30 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      "cmd-shift-e": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "R": "editor::Rename",
+    },
+  },
+  {
+    "bindings": {
+      "alt-cmd-shift-a": "agent::FocusAgent",
+    },
+  },
+]
