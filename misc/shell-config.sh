@@ -1,49 +1,7 @@
 # Resolve dotfiles directory dynamically (macOS: ~/.zshrc, Linux: ~/.bash_aliases)
 if [ -n "${ZSH_VERSION:-}" ]; then
-    bindkey -v
-
-    # Make Esc switch to normal mode quickly.
-    # If Option/Alt shortcuts feel flaky, change this to 10.
-    KEYTIMEOUT=1
-
-    # Vim-like cursor in zsh vi mode:
-    # - insert mode: bar cursor
-    # - normal mode: block cursor
-    zle-keymap-select() {
-        case "$KEYMAP" in
-            vicmd)
-                printf '\e[2 q' # steady block
-                ;;
-            viins|main)
-                printf '\e[6 q' # steady bar
-                ;;
-        esac
-    }
-
-    zle-line-init() {
-        zle-keymap-select
-    }
-
-    zle-line-finish() {
-        printf '\e[0 q'
-    }
-
-    # ZLE (Zsh Line Editor) is zsh's interactive prompt editor.
-    # Register these functions as ZLE widgets/hooks so zsh calls them
-    # when the prompt starts, finishes, or switches between vi keymaps.
-    zle -N zle-keymap-select
-    zle -N zle-line-init
-    zle -N zle-line-finish
-
     eval "$(zoxide init zsh)"
 elif [ -n "${BASH_VERSION:-}" ]; then
-    set -o vi
-
-    # Vim-like cursor in bash vi mode when supported by Readline.
-    bind 'set show-mode-in-prompt on'
-    bind 'set vi-ins-mode-string \1\e[6 q\2'
-    bind 'set vi-cmd-mode-string \1\e[2 q\2'
-
     eval "$(zoxide init bash)"
 fi
 
@@ -59,7 +17,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt/ruby/bin:$BUN_INSTALL/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
-export EDITOR="nvim"
 
 alias q="exit"
 alias ":q"="exit"
@@ -67,15 +24,13 @@ alias c="clear"
 alias cls="clear"
 alias vps="ssh pujia"
 alias fvps="mosh -p 60001 --server=/home/linuxbrew/.linuxbrew/bin/mosh-server nico@pujia"
-alias config="nvim $DOTFILES_DIR/shell-config.sh"
+alias config="vim $DOTFILES_DIR/shell-config.sh"
 alias cfg="config"
 alias reload="source $DOTFILES_DIR/shell-config.sh"
-alias nvimrc="nvim $DOTFILES_DIR/home/.config/nvim/init.lua"
 alias g="git"
 alias dk="docker"
-alias oc="opencode"
-alias omo='OPENCODE_CONFIG_CONTENT="{ \"\$schema\": \"https://opencode.ai/config.json\", \"permission\": \"allow\" }" opencode'
-alias claudio="claude --dangerously-skip-permissions"
+alias oc='EDITOR=vim OPENCODE_CONFIG_CONTENT="{ \"\$schema\": \"https://opencode.ai/config.json\", \"permission\": \"allow\" }" opencode'
+alias cl="claude --dangerously-skip-permissions"
 alias cx="codex --yolo"
 if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
     alias tmux="/usr/bin/tmux"
@@ -83,94 +38,6 @@ fi
 alias kill-port='f(){ local pids; pids=$(lsof -ti:$1); if [[ $(echo $pids | wc -w) -eq 1 ]]; then kill $pids; echo "Killed PID $pids"; else echo "Multiple or no processes found: $pids"; fi; }; f'
 alias killp="kill-port"
 alias reload-tmux="tmux source-file ~/.tmux.conf"
-
-if [[ "$OSTYPE" == "linux-gnu"* && -x /usr/bin/tmux ]]; then
-    alias tmux="/usr/bin/tmux"
-fi
-
-_brewfile_add_entry() {
-    local entry="$1"
-    local brewfile="$DOTFILES_DIR/Brewfile"
-
-    [[ -n "$DOTFILES_DIR" && -f "$brewfile" ]] || return
-    grep -Fxq "$entry" "$brewfile" 2>/dev/null && return
-
-    printf '%s\n' "$entry" >> "$brewfile"
-    echo "Added to Brewfile: $entry"
-}
-
-_brewfile_record_install() {
-    local entry_type="brew"
-    local arg=""
-    local skip_next=0
-
-    for arg in "$@"; do
-        case "$arg" in
-            --cask|--casks)
-                entry_type="cask"
-                ;;
-            --formula|--formulae)
-                entry_type="brew"
-                ;;
-        esac
-    done
-
-    for arg in "$@"; do
-        if [[ "$skip_next" -eq 1 ]]; then
-            skip_next=0
-            continue
-        fi
-
-        case "$arg" in
-            --appdir)
-                skip_next=1
-                continue
-                ;;
-            --color|--display-times|--env|--fetch-HEAD|--formula|--formulae|--force-bottle|--HEAD|--ignore-dependencies|--interactive|--keep-tmp|--quiet|--verbose|--debug|--build-from-source|--build-bottle|--cask|--casks)
-                continue
-                ;;
-            --appdir=*|--*)
-                continue
-                ;;
-        esac
-
-        _brewfile_add_entry "$entry_type \"$arg\""
-    done
-}
-
-_brewfile_record_tap() {
-    local arg=""
-
-    for arg in "$@"; do
-        [[ "$arg" == --* ]] && continue
-        _brewfile_add_entry "tap \"$arg\""
-    done
-}
-
-brew() {
-    if [[ "$#" -eq 0 ]]; then
-        command brew
-        return $?
-    fi
-
-    local subcommand="$1"
-    shift || true
-
-    command brew "$subcommand" "$@"
-    local brew_status=$?
-    [[ "$brew_status" -eq 0 ]] || return "$brew_status"
-
-    case "$subcommand" in
-        install)
-            _brewfile_record_install "$@"
-            ;;
-        tap)
-            _brewfile_record_tap "$@"
-            ;;
-    esac
-
-    return "$brew_status"
-}
 
 # bun completions
 [ -n "${ZSH_VERSION:-}" ] && [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
