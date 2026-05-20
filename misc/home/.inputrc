@@ -1,0 +1,9 @@
+set editing-mode vi
+
+# Use a bar cursor in insert mode and a block cursor in command mode.
+set vi-ins-mode-string \1\e[6 q\2
+set vi-cmd-mode-string \1\e[2 q\2
+
+# Most terminals send Delete as Esc [ 3 ~. In Readline this applies while
+# typing; vi command mode still keeps its normal vi-style editing behavior.
+"\e[3~": delete-char

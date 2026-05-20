@@ -109,6 +109,7 @@
   },
   "file_types": {
     "svg": ["html"],
+    ".inputrc": ["Shell Script"],
   },
 
   // AI
