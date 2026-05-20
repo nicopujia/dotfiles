@@ -17,7 +17,6 @@ brew "stow"
 brew "uv"
 brew "zoxide"
 
-cask "brave-browser"
 cask "ghostty"
 cask "codex"
 cask "obsidian"
