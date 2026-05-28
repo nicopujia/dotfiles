@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "@anthropic-ai/claude-code": "latest",
+    "@earendil-works/pi-coding-agent": "latest",
     "@google/gemini-cli": "latest",
-    "@mariozechner/pi-coding-agent": "latest",
     "firebase-tools": "latest",
     "opencode-ai": "latest",
     "opencode-antigravity-auth": "latest",
