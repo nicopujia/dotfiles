@@ -7,16 +7,19 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "cli_default_open_behavior": "new_window",
   "autosave": "on_focus_change",
+
+  // UI
   "soft_wrap": "bounded",
   "preferred_line_length": 120,
-
-  // Font sizes
-  "agent_buffer_font_size": 16.0,
-  "agent_ui_font_size": 20.0,
   "ui_font_size": 18.0,
-  "buffer_font_weight": 400.0,
   "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Monokai Night",
+  },
 
   // Remote
   "ssh_connections": [
@@ -26,18 +29,11 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/nico/jri"],
+          "paths": ["/home/nico/just-ralph-it"],
         },
       ],
     },
   ],
-
-  // Theme
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Monokai Night",
-  },
 
   // Git
   "git": {
@@ -45,6 +41,7 @@
     "git_gutter": "tracked_files",
   },
   "git_panel": {
+    "dock": "left",
     "tree_view": true,
   },
 
@@ -113,6 +110,13 @@
   },
 
   // AI
+  "disable_ai": true,
+  "outline_panel": {
+    "dock": "left",
+  },
+  "project_panel": {
+    "dock": "left",
+  },
   "agent": {
     "default_model": {
       "provider": "openai-subscribed",
