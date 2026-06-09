@@ -14,3 +14,10 @@ Do not use for: refactoring, writing scripts from scratch, debugging business lo
 2. Pick the best match (ID format: `/org/project`) by: exact name match, description relevance, code snippet count, source reputation (High/Medium preferred), and benchmark score (higher is better). If results don't look right, try alternate names or queries (e.g., "next.js" not "nextjs", or rephrase the question). Use version-specific IDs when the user mentions a version
 3. `query-docs` with the selected library ID and the user's full question (not single words)
 4. Answer using the fetched docs
+
+# Package management
+
+Unless the project is explicitely already using a different package manager or runtime, prefer:
+
+- Python: `uv`
+- Node.js: `bun`
