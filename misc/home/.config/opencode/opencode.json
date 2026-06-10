@@ -5,5 +5,6 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
     }
-  }
+  },
+  "small_model": "opencode/big-pickle"
 }
