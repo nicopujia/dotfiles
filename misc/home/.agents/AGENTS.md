@@ -16,6 +16,8 @@ Unless the project is explicitely already using a different package manager or r
 
 Every time you run a long-running or interactive command, do it inside a `tmux` window. If you start multiple related ones, run them on different panes of the same window. If the user does not specify a particular session, and there is currently only one, use that one; if there are more existing sessions, ask the user which one to use. 
 
+Likewise, if you need to read the output of any of those commands, you will be able to read them using `tmux`.
+
 These kind of commands include, but are not limited to:
 
 - Local servers (e.g., `bun dev`, `uv run fastapi dev`, `expo start`, etc.)
