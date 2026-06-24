@@ -25,6 +25,8 @@ Examples:
 
 For any non-interactive or short-running command, use your bash tool directly.
 
+IMPORTANT: do NOT assume that a process isn't already running. Always check first.
+
 # Legacy code
 
 Unless I explicitely ask for maintaining legacy code or backwards compatibility, wipe old code out mercilessly. Mention when you do it.
