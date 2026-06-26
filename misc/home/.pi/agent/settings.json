@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.80.2",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "xhigh",
+  "hideThinkingBlock": true,
+  "theme": "dark",
+  "packages": [
+    "npm:pi-web-access"
+  ]
+}
