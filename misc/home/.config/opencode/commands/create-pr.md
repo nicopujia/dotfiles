@@ -2,6 +2,7 @@
 description: Commit, push, and create a PR.
 agent: build
 subtask: true
+model: opencode/big-pickle
 ---
 
 If you are on master, move to a new `nicopujia/` branch based on the diff.
