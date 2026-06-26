@@ -23,6 +23,7 @@ cd dotfiles
     ├── Brewfile             Homebrew formulae and casks
     ├── uv-tools.txt         uv-managed global tools
     ├── shell-config.sh      → ~/.zshrc (macOS) or ~/.bash_aliases (Linux)
+    ├── AGENTS.md            Global pi agent instructions (also available at ~/.pi/)
     └── home/                Stow package → symlinks to ~
         └── ...              → ~/...
 ```
@@ -38,6 +39,17 @@ Machine-level packages are managed in three places:
 Repo-level tools such as test frameworks, formatters, and formatter plugins should live in the repo that uses them, not in these dotfiles.
 
 Obsidian is installed as a cask, but Obsidian vault config is intentionally not tracked yet.
+
+## Pi (AI Coding Agent)
+
+[Pi](https://pi.dev) configuration is tracked under `misc/home/.pi/`:
+
+| File | Live location | Purpose |
+|------|---------------|---------|
+| `misc/home/.pi/AGENTS.md` | `~/.pi/AGENTS.md` | Global agent instructions (behavior, package preferences, conventions) |
+| `misc/home/.pi/agent/settings.json` | `~/.pi/agent/settings.json` | Provider, model, theme, installed packages |
+
+Machine-specific data (auth, trust decisions, session history, downloaded binaries) is not tracked.
 
 ## Secrets
 
