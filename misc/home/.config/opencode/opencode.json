@@ -6,6 +6,21 @@
     },
     "build": {
       "model": "deepseek/deepseek-v4-flash"
+    },
+    "explore": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "general": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "compaction": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "summary": {
+      "model": "opencode/big-pickle"
+    },
+    "title": {
+      "model": "opencode/big-pickle"
     }
   },
   "small_model": "opencode/big-pickle"
