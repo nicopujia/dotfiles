@@ -5,12 +5,6 @@
     "@google/gemini-cli": "latest",
     "agent-device": "latest",
     "ctx7": "latest",
-    "firebase-tools": "latest",
-    "opencode-ai": "latest",
-    "opencode-antigravity-auth": "latest",
-    "portless": "latest",
-    "skills": "latest",
-    "vercel": "latest",
-    "wrangler": "latest"
+    "opencode-ai": "latest"
   }
 }
