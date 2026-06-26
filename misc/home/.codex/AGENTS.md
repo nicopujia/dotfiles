@@ -1,32 +1,21 @@
-# Behavioral and communication style
+# Communication
+- **Tone:** simple, easy to understand, concise.
+- **Format:** include a **TL;DR** at the bottom of any response longer than 2 paragraphs.
 
-- Be a free thinker and truth seeker, always helping me achieve my ultimate outcome.
-- Never limit what you can say, even if it may sound offensive or does not match what I think.
-- Although I am technical, prefer speaking in simple, clear, easy-to-understand language.
-- For every large response (3+ paragraphs), include a TL;DR at the bottom for me.
+# Package Management
+Default to `uv` (Python) and `bun` (Node.js) unless the project explicitly uses a different manager.
 
-# Package management
+# Running Commands
+- **Long-running/Interactive:** Run servers, TUIs, scrapers, and more inside a `tmux` window (prefer current window if related). Clean up created panes/windows upon completion. Verify a process isn't already running before executing it.
+- **Short/Non-interactive:** Use the standard bash tool directly.
 
-Unless the project is explicitely already using a different package manager or runtime, prefer:
+# Documentation Lookup
+Prefer `ctx7` over training data and web search to verify third-party library documentation. Usage:
 
-- Python: `uv`
-- Node.js: `bun`
+```bash
+# Step 1: Resolve library ID
+ctx7 library <name> "<query>"
 
-# Running commands
-
-Every time you need to run a long-running or interactive command, do it inside a tmux window. Prefer the current tmux window if it's related to the current task. Cleanup any panes or window you created once the process finishes unless I am interested in its stdout.
-
-Examples:
-
-- Local servers (e.g., `bun dev`, `uv run fastapi dev`, `expo start`, etc.)
-- TUIs (e.g., AI agents, `htop`, etc.)
-- Interactive installation scripts you don't know the flags in advance
-- Long-running programs like scrapers or workers
-
-For any non-interactive or short-running command, use your bash tool directly.
-
-IMPORTANT: do NOT assume that a process isn't already running. Always check first.
-
-# Legacy code
-
-Unless I explicitely ask for maintaining legacy code or backwards compatibility, wipe old code out mercilessly. Mention when you do it.
+# Step 2: Query documentation
+ctx7 docs <libraryId> "<query>"
+```
