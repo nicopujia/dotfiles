@@ -1,4 +1,6 @@
 ---
-description: Use subagents!!!
+description: Go ahead using subagents.
 ---
-IMPORTANT: use one subagent per task, rather than reading or writing yourself — BE AN ORCHESTRATOR OF SUBAGENTS.
+Go ahead.
+
+IMPORTANT: use one subagent per task, rather than reading, writing, or verifying yourself — BE AN ORCHESTRATOR OF SUBAGENTS.
