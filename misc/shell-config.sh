@@ -7,7 +7,6 @@ fi
 # --- Variables ---
 export DOTFILES_DIR="$(cd "$(dirname "$_dotfiles_shell_config")" && pwd)"
 export DOTFILES_MISC_DIR="$DOTFILES_DIR"
-export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PUB_CACHE="$HOME/.pub-cache"
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt/ruby/bin:$BUN_INSTALL/bin:$PUB_CACHE/bin:$PATH"
@@ -44,13 +43,6 @@ fi
 
 # API KEYS / OAUTH TOKENS - load from ~/.env (not tracked in git)
 [ -f ~/.env ] && source ~/.env
-
-# load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm use --silent default >/dev/null 2>&1
-
-# load nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # OS/Shell-specific configs
 if [ -n "${ZSH_VERSION:-}" ]; then
